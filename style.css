@@ -4,3 +4,5 @@
 .material-label{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;white-space:nowrap}.material-thumb{display:block;width:32px;height:32px;object-fit:contain}.material-heading{display:flex;align-items:center;gap:9px}.upgrade-ingredient{display:inline-flex;flex-direction:column;align-items:center;gap:5px}.upgrade-stage .upgrade-material{display:block;width:48px;height:48px;object-fit:contain}.material-label:hover,.upgrade-ingredient:hover{color:var(--accent)}@media(max-width:580px){.recipe .material-thumb{width:27px;height:27px}.upgrade-stage .upgrade-material{width:40px;height:40px}}
 
 .icon-arrow{display:inline-block;width:14px;height:14px;flex-shrink:0;vertical-align:-2px}nav a>.icon-arrow{float:right;margin-top:5px;color:var(--accent)}.community button .icon-arrow{margin-left:8px}
+
+#nav{overflow-y:auto;min-height:0}.side-bottom{flex-shrink:0}.skin-tabs{flex-wrap:wrap;column-gap:15px;row-gap:3px}
