@@ -15,6 +15,7 @@
 - `app.js`：搜索、衣装切换、主题选择与群号复制。
 - `assets/`：随网站保存的图片。
 - `particles.js`：桌面端表情点阵互动，窄屏隐藏并按可见性暂停。
+- `combo-preview.js`：普攻五段动画预览与暂停控制。
 - `.github/workflows/pages.yml`：自动部署配置。
 
 默认深色主题，尊重访客保存的手动选择。
