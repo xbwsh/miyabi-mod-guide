@@ -1,12 +1,12 @@
 # 星见雅 · 永恒领域档案
 
-饥荒联机版星见雅模组的静态介绍网站。当前内容对应 0.3.82-hat-rear-fit-v128，包含三套衣装及晓·渔夫帽、晓·围巾。使用 HTML、CSS、JavaScript 和本地图片，无需安装依赖或构建。
+饥荒联机版星见雅模组的静态介绍网站。当前内容对应 0.3.122-hud-scale-fix-v169，包含三套衣装、双材料升级、小无尾伙伴、季节装备及驱动盘界面。使用 HTML、CSS、JavaScript 和本地图片，无需安装依赖或构建。
 
 ## 发布
 
 在仓库 Settings → Pages → Build and deployment 中选择 GitHub Actions。推送到 `main` 后自动部署。
 
-预计地址：https://xbwsh.github.io/miyabi-mod-guide/ （首次部署成功后生效）
+网站地址：https://xbwsh.github.io/miyabi-mod-guide/
 
 ## 文件
 
