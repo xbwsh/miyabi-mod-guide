@@ -13,7 +13,7 @@
 
 .combo-preview{margin:24px 0 20px;padding:18px;background:var(--surface);border:1px solid var(--line)}.combo-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:14px}.combo-heading h3{margin:0}.combo-heading p{font-size:11px;color:var(--muted);margin:4px 0 0}.combo-toggle{flex:0 0 auto;background:transparent;border:1px solid var(--line);color:var(--accent);padding:5px 10px;font-size:11px}.combo-toggle:hover{border-color:var(--accent)}.combo-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.combo-grid figure{margin:0;min-width:0;background:#18252c}.combo-grid img{display:block;width:100%;height:auto}.combo-grid figcaption{padding:7px 8px;color:#d5e8e9;font-size:11px;white-space:nowrap}.combo-grid figcaption span{font:9px Arial,sans-serif;color:#89b8bf;margin-right:3px}@media(max-width:760px){.combo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.combo-preview{padding:14px}.combo-heading{align-items:flex-start}}
 
-.feixue-grid{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:580px){.feixue-grid{grid-template-columns:1fr}.feixue-grid img{max-height:240px;object-fit:contain}}
+.feixue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:580px){.feixue-grid{grid-template-columns:1fr}.feixue-grid img{max-height:240px;object-fit:contain}}
 
 #dawn-scarf .note + .recipe{margin-top:20px}
 
