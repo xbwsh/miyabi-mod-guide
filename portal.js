@@ -1,0 +1,1 @@
+document.querySelectorAll('.portal-theme').forEach(button=>button.addEventListener('click',()=>{const dark=document.body.classList.toggle('dark');try{localStorage.setItem('miyabi-theme',dark?'dark':'light')}catch{}}));

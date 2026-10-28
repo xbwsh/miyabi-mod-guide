@@ -1,0 +1,1 @@
+(()=>{const h=location.hash.slice(1);if(!h)return;const shared=new Set(["core","drive","materials","record-shop","crate","chips"]);const character=new Set(["overview","combat","wuwei","upgrade","pack","hairclip","dawn-hat","dawn-scarf","companion","wardrobe","guide"]);if(shared.has(h)||character.has(h))location.replace((shared.has(h)?"zzz.html":"miyabi.html")+location.hash)})();
