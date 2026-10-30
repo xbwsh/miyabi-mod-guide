@@ -22,3 +22,5 @@
 .filters{flex-wrap:wrap}
 
 .shared-hero .hero-art img{width:min(60%,280px);height:auto;max-height:360px;object-fit:contain}
+
+.set-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}.set-grid article{background:var(--surface);border:1px solid var(--line);padding:18px}.set-grid img{width:34px;height:34px;object-fit:contain}.set-grid h3{margin:6px 0 12px}.set-grid p{font-size:12px;line-height:1.75;margin:8px 0}.set-grid p b{color:var(--accent);margin-right:5px}.set-grid small{color:var(--muted);line-height:1.6}.guide-details{border-top:1px solid var(--line);padding:0}.guide-details summary{padding:16px 2px;font-size:14px;font-weight:600}.guide-details-content{padding:0 2px 18px}.guide-details-content p{font-size:13px}.guide-details-content .table-wrap{margin:16px 0}.guide-details-content h3:first-child{margin-top:0}@media(max-width:900px){.set-grid{grid-template-columns:1fr}.set-grid article{padding:15px 18px}.set-grid img{float:right}.set-grid h3{margin-top:0}}
