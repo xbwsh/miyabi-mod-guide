@@ -107,3 +107,6 @@ body.dark{--muted:#a7b6b0}
 .set-effect strong{font-weight:700;font-variant-numeric:tabular-nums}
 .set-effect dd small{display:block;margin-top:9px;color:var(--muted);font-size:12px;line-height:1.65}
 @media(max-width:900px){.set-grid .set-card{padding:18px}}
+
+/* 章节目录统一放在左侧，正文保持适合阅读的宽度。 */
+.reading-layout{display:block;max-width:800px}.return-top{font-size:13px;color:var(--accent);align-self:flex-start}.return-top:hover{text-decoration:underline}@media(max-width:580px){footer .return-top{display:inline-block;margin-top:16px}}
