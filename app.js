@@ -135,14 +135,33 @@ document.querySelectorAll('.section-nav a[href^="#"]').forEach(link => {
 window.addEventListener('hashchange', () => revealLinkedDetails(location.hash));
 revealLinkedDetails(location.hash);
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      nav.forEach(link => link.classList.toggle('active', link.hash === `#${entry.target.id}`));
-    }
+// Use document order so short final sections can become active at the bottom.
+const sections = nav.map(link => document.querySelector(link.hash)).filter(Boolean);
+function updateActiveSection() {
+  if (!sections.length) return;
+  const scrollRoot = document.scrollingElement;
+  const atBottom = scrollRoot.scrollHeight > scrollRoot.clientHeight &&
+    scrollRoot.scrollTop + scrollRoot.clientHeight >= scrollRoot.scrollHeight - 2;
+  let active = sections[0];
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= window.innerHeight * 0.12) active = section;
+  }
+  const last = sections[sections.length - 1];
+  if (atBottom && last.getBoundingClientRect().top < window.innerHeight) active = last;
+  nav.forEach(link => link.classList.toggle('active', link.hash === `#${active.id}`));
+}
+let scrollUpdatePending = false;
+function scheduleActiveSectionUpdate() {
+  if (scrollUpdatePending) return;
+  scrollUpdatePending = true;
+  requestAnimationFrame(() => {
+    scrollUpdatePending = false;
+    updateActiveSection();
   });
-}, { rootMargin: '-12% 0px -65% 0px', threshold: 0 });
-document.querySelectorAll('[data-entry]').forEach(section => observer.observe(section));
+}
+window.addEventListener('scroll', scheduleActiveSectionUpdate, { passive: true });
+window.addEventListener('resize', scheduleActiveSectionUpdate);
+updateActiveSection();
 
 const skins = {
   default: {
