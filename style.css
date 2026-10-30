@@ -100,10 +100,10 @@ body.dark{--muted:#a7b6b0}
 .set-grid .set-card-heading{display:flex;align-items:center;gap:10px;padding-bottom:15px;border-bottom:1px solid var(--line)}
 .set-grid .set-card-heading img{float:none;flex:0 0 36px;width:36px;height:36px;object-fit:contain}
 .set-grid .set-card-heading h3{margin:0;font-size:17px;line-height:1.4}
-.set-card dl{margin:0}.set-effect{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;padding:15px 0 0}
+.set-card dl{margin:0}.set-effect{display:block;padding:15px 0 0}
 .set-effect+.set-effect{margin-top:15px;border-top:1px solid var(--line)}
 .set-effect dt{color:var(--accent);font-size:13px;font-weight:650;white-space:nowrap;line-height:1.7}
-.set-effect dd{min-width:0;margin:0;font-size:15px;line-height:1.7;overflow-wrap:anywhere}
+.set-effect dd{min-width:0;margin:4px 0 0;font-size:15px;line-height:1.7;overflow-wrap:anywhere}
 .set-effect strong{font-weight:700;font-variant-numeric:tabular-nums}
 .set-effect dd small{display:block;margin-top:9px;color:var(--muted);font-size:12px;line-height:1.65}
-@media(max-width:900px){.set-grid .set-card{padding:18px}.set-effect{grid-template-columns:44px minmax(0,1fr)}}
+@media(max-width:900px){.set-grid .set-card{padding:18px}}
