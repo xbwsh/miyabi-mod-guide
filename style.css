@@ -110,3 +110,5 @@ body.dark{--muted:#a7b6b0}
 
 /* 章节目录统一放在左侧，正文保持适合阅读的宽度。 */
 .reading-layout{display:block;max-width:800px}.return-top{font-size:13px;color:var(--accent);align-self:flex-start}.return-top:hover{text-decoration:underline}@media(max-width:580px){footer .return-top{display:inline-block;margin-top:16px}}
+
+.profile-list{margin:20px 0}.profile-list>div{display:grid;grid-template-columns:4em 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.profile-list dt{font-weight:650;color:var(--accent)}.profile-list dd{margin:0;line-height:1.85}.guide-details-content h3:not(:first-child){margin-top:32px}.material-table td{vertical-align:middle}.material-table code{display:inline-block;margin-top:3px}
