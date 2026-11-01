@@ -39,13 +39,15 @@
 <button data-filter="materials">材料</button>
 <button data-filter="buildings">建筑</button>
 </div>
-<div class="nav-caption">本页目录 <span id="count">10</span>
+<div class="nav-caption">本页目录 <span id="count">12</span>
 </div>
 <nav id="nav">
 <a href="#core" data-tag="overview">模组介绍</a>
 <a href="#profile" data-tag="system">角色资料</a>
+<a href="#anomaly" data-tag="system">冰异常</a>
 <a href="#drive" data-tag="system">驱动盘</a>
 <a href="#materials" data-tag="materials">升级材料</a>
+<a href="#yunkui" data-tag="system">以太电池与符箓</a>
 <a href="#record-shop" data-tag="buildings">音像店</a>
 <a href="#chips" data-tag="materials">冰结芯片</a>
 <a href="#crate" data-tag="buildings">空洞木箱</a>
@@ -88,7 +90,7 @@
 <a href="#drive">装配驱动盘</a>
 <a href="#record-shop">制作与拆解</a>
 </div>
-<p class="muted">服务端与客户端均需启用。加载壁纸自动轮换。</p>
+<p class="muted">服务端与客户端均需启用。公共配方在“绝区零”分类，符箓在“云岿山术法”分类。加载壁纸共 12 张，自动轮换。</p>
 </div>
 <div class="hero-art">
 <img src="assets/zzz-modicon.png" alt="绝区零公共模组图标">
@@ -99,7 +101,7 @@
 <details>
 <summary>其他物品<span>+</span>
 </summary>
-<p>储蓄电量、三种高阶异体刃、邦邦大背包和高阶抗蚀器目前仅有物品展示、库存与存档功能，尚未加入对应装备机制。</p>
+<p>三种高阶异体刃、邦邦大背包和高阶抗蚀器目前仅有物品展示、库存与存档功能，尚未加入对应装备机制。储蓄电卡已可用于合成以太电池。</p>
 </details>
 <section id="profile" data-entry="system" class="entry">
 <h2>角色资料</h2>
@@ -107,7 +109,7 @@
 <dl class="profile-list">
 <div>
 <dt>基础</dt>
-<dd>查看角色属性；星见雅的肖像随衣装切换。</dd>
+<dd>查看角色属性、异常精通、异常掌控与实际穿透率；星见雅的肖像随衣装切换。</dd>
 </div>
 <div>
 <dt>技能</dt>
@@ -119,6 +121,25 @@
 </div>
 </dl>
 <p class="muted">返回按钮或 Esc 在装配界面先返回装备预览，再次返回关闭资料页。</p>
+</section>
+<section id="anomaly" data-entry="system" class="entry">
+<h2>冰异常</h2>
+<p>冰与烈霜共用一根 <b>100 点异常条</b>，显示在目标头顶。星见雅只有妖刀第 3～5 刀和飞雪的有效命中会积蓄，分别为 <b>10 × 异常掌控 ÷100</b> 与 <b>20 × 异常掌控 ÷100</b>。</p>
+<dl class="profile-list">
+<div>
+<dt>异常掌控</dt>
+<dd>提高每次积蓄量。星见雅基础为 116，6 号盘的异常掌控百分比会参与计算。</dd>
+</div>
+<div>
+<dt>异常精通</dt>
+<dd>提高满条伤害。星见雅基础为 238，4 号主词条与异常精通副词条均已生效。</dd>
+</div>
+<div>
+<dt>满条结算</dt>
+<dd>按各次积蓄的攻击力、精通与适用增伤快照加权，基础为 500% 攻击力 × 精通 ÷100，结算普通伤害并尝试冻结；溢出的积蓄进入下一条。</dd>
+</div>
+</dl>
+<p class="muted">满条伤害不暴击、不含位面基数，不再次积蓄或触发暴击减冷却。免疫冻结不等于免疫异常伤害；实际冻结遵守目标免控限制。异常进度与待结算伤害随目标存档，旧冰/烈霜双条会合并。</p>
 </section>
 <section id="drive" data-entry="system" class="entry">
 <div class="item-heading">
@@ -153,7 +174,7 @@
 </div>
 <div class="set-effect">
 <dt>4 件</dt>
-<dd>使敌人冻结或攻击破冰后，暴击率 <strong>+12%</strong>，持续 15 秒。<small>重复触发刷新时间；自然解冻不触发。</small>
+<dd>异常掌控达到 <strong>115</strong> 时，暴击伤害 <strong>+30 个百分点</strong>。使敌人冻结或攻击破冰后，暴击率 <strong>+12%</strong>，持续 15 秒。<small>重复触发刷新时间；自然解冻不触发。</small>
 </dd>
 </div>
 </dl>
@@ -194,7 +215,7 @@
 </dl>
 </article>
 </div>
-<p class="muted">套装按各自件数生效；总暴击率上限 100%。折枝剑歌不足四件或死亡时，四件套增益消失。以星见雅为例，折枝剑歌两件套使基础暴击伤害由 50% 提升至 66%。</p>
+<p class="muted">套装按各自件数生效；总暴击率上限 100%。折枝剑歌不足四件或死亡时，四件套增益消失。以星见雅为例，基础掌控 116 已满足折枝四件门槛；不计其他装备时，暴击伤害由基础 50% 提升至两件 66%、四件 96%。</p>
 <details class="guide-details" id="drive-stats">
 <summary>品级与词条<span aria-hidden="true">+</span>
 </summary>
@@ -249,7 +270,10 @@
 </tbody>
 </table>
 </div>
-<p class="muted">4～6 号主词条各自按品级使用表中数值；异常精通及 5、6 号专属词条目前仅保存与显示，尚未生效。</p>
+<p class="muted">异常精通、穿透率、冰伤加成与异常掌控已生效。风、火、电、物理和以太伤害加成，以及冲击力、能量自动回复，目前仅保存与显示。</p>
+<h3>冰伤与穿透</h3>
+<p>冰伤主词条强化妖刀第 3～5 刀和飞雪的冰伤，S / A / B 分别为 30% / 20% / 10%。冰伤无视普通护甲与位面防御，但受位面实体抵抗影响；独立位面伤害不转为冰伤。</p>
+<p>穿透同时作用于<b>物理与冰伤</b>：增伤保底为穿透率的一半，与恢复位面实体抵抗减伤的收益取高，二者不相加。S / A / B 穿透率为 24% / 16% / 8%，无实体抵抗时对应保底增伤 12% / 8% / 4%。独立位面伤害不受穿透加成。</p>
 <h3>副词条</h3>
 <p>每张盘有四条随机副词条，同盘不重复，普通词条数值随品级变化；同名主词条与副词条不会同时出现。词条生成后随物品保存，装卸和读档不会重抽。</p>
 <div class="table-wrap">
@@ -284,7 +308,7 @@
 </tbody>
 </table>
 </div>
-<p class="muted">多数副词条以 S 级为基准，A 级为 S 的 2/3，B 级为 S 的 1/3；实际计算保留小数。移动速度和位面伤害各品级固定为 +1% 和 +1，稳固等级也不随品级缩放。异常精通目前仅保存与显示；防御力提供额外减伤，与护甲减伤相乘。</p>
+<p class="muted">多数副词条以 S 级为基准，A 级为 S 的 2/3，B 级为 S 的 1/3；实际计算保留小数。移动速度和位面伤害各品级固定为 +1% 和 +1，稳固等级也不随品级缩放。异常精通参与满条异常伤害；防御力提供额外减伤，与护甲减伤相乘。</p>
 <h3>稳固</h3>
 <p>稳固分为 1～3 级，多件只取最高级。1、2 级将击飞转为击退，硬直分别为 11、9 帧；3 级在生命高于上限 50% 时，将击飞或击退转为普通受击，生命不足时不生效。</p>
 </div>
@@ -313,7 +337,7 @@
 <span class="material-label">
 <img class="material-thumb" src="assets/resonance-core.png" alt="谐振核心仪">谐振核心仪 ×1</span>
 </b>
-<small>人物 / 精炼分类 · 无额外材料</small>
+<small>绝区零分类 · 无额外材料</small>
 </div>
 <p class="muted">由玩家击败符合条件的巨兽时，有 25% 概率额外掉落一个调律材料，两种等概率；树精守卫和蜘蛛女王不掉落。</p>
 </div>
@@ -322,7 +346,8 @@
 <summary>击败掉落<span aria-hidden="true">+</span>
 </summary>
 <div class="guide-details-content">
-<p>由玩家造成最终击败时，具有巨兽标签的敌人通常掉落一张随机套装、随机盘位的 A 级驱动盘；鹿角鹅、蚁狮、龙蝇、熊獾和独眼巨鹿各有 50% 概率将其替换为 S 级。树精守卫与蜘蛛女王有 50% 概率掉落一张 B 级。每次符合条件的击败最多掉落一张，盘位随机。</p>
+<p>符合条件的巨兽，以及树精守卫、蜘蛛女王，每只统一掉落<b>一张</b>随机套装、随机盘位驱动盘：<b>S 级 20% / A 级 30% / B 级 50%</b>。不再按首领种类使用不同品级概率。</p>
+<p>玩家完成最后一击，或击败前 10 秒内造成过有效伤害，均可获得掉落；协战鲨牙布按主人计算。多人参与只产生一份共享掉落，不按人数增加。阶段转换和假死不重复发奖。</p>
 </div>
 </details>
 <details class="guide-details" id="drive-interface">
@@ -330,7 +355,7 @@
 </summary>
 <div class="guide-details-content">
 <h3>背包装备动画</h3>
-<p>星见雅身体槽装备霰落星殿时，装配盘中央播放约 6 秒动画，每次开页播放一次，末帧停留；筛选不重播，卸装时隐藏。</p>
+<p>星见雅穿戴霰落星殿时，装配盘中央播放约 6 秒动画，每次开页播放一次，末帧停留；筛选不重播，卸装时隐藏。</p>
 <h3>界面位置</h3>
 <ul>
 <li>
@@ -388,6 +413,67 @@
 </div>
 <p class="muted">科学机器解锁。</p>
 </section>
+<section id="yunkui" data-entry="system" class="entry manual-card">
+<h2>以太电池与符箓</h2>
+<p>先用储蓄电卡与电量合成以太电池，再制作符箓。所有配方均由科学机器解锁。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th>配方</th>
+<th>制作分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="material-label">
+<img class="material-thumb" src="assets/charge-card.png" alt="">储蓄电卡</span>
+</td>
+<td>月亮碎片 ×2</td>
+<td>绝区零</td>
+</tr>
+<tr>
+<td>
+<span class="material-label">
+<img class="material-thumb" src="assets/ether-battery.png" alt="">以太电池</span>
+</td>
+<td>储蓄电卡 ×1 + 电量 ×2</td>
+<td>绝区零</td>
+</tr>
+<tr>
+<td>
+<span class="material-label">
+<img class="material-thumb" src="assets/weather-talisman.png" alt="">晴雨符箓</span>
+</td>
+<td>莎草纸 ×2 + 以太电池 ×1</td>
+<td>云岿山术法</td>
+</tr>
+<tr>
+<td>
+<span class="material-label">
+<img class="material-thumb" src="assets/growth-talisman.png" alt="">催生符箓</span>
+</td>
+<td>莎草纸 ×2 + 以太电池 ×1</td>
+<td>云岿山术法</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>施符</h3>
+<p>把符箓与至少 2 个以太电池带在身上，物品栏右键选择<b>“施符”</b>。成功释放消耗 1 张符箓与 2 个以太电池；释放前中断不消耗。骑乘、变身、死亡或变为灵魂时无法施放。</p>
+<dl class="profile-list">
+<div>
+<dt>晴雨符箓</dt>
+<dd>切换当前世界层的降水：晴天催雨，雨雪或酸雨中停雨。地表与洞穴各自生效，不影响另一层；具体降水类型和区域由原生天气决定。</dd>
+</div>
+<div>
+<dt>催生符箓</dt>
+<dd>以角色为中心，催生半径 15 世界单位内符合条件的植物。分阶段生长植物只推进一阶段；成熟、腐烂、枯萎等不适用目标跳过。附近无可催生植物时不消耗。</dd>
+</div>
+</dl>
+</section>
 <section id="record-shop" data-entry="buildings" class="entry manual-card">
 <div class="item-heading">
 <div>
@@ -415,6 +501,10 @@
 <b>
 <span class="material-label">
 <img class="material-thumb" src="assets/material-transistor.png" alt="电子元件" width="32" height="32" loading="lazy">电子元件 ×5</span>
+</b>
+<i>+</i>
+<b>
+<span class="material-label">齿轮 ×1</span>
 </b>
 <small>炼金引擎 · 所有角色可制作</small>
 </div>
@@ -484,7 +574,7 @@
 </section>
 <section id="chips" data-entry="materials" class="entry">
 <h2>冰结芯片</h2>
-<p>基础、进阶与特化冰结芯片可在精炼分类转换：3 个基础合成 1 个进阶，3 个进阶合成 1 个特化；每次分解返还 3 个低一级芯片。</p>
+<p>基础、进阶与特化冰结芯片可在绝区零分类转换：3 个基础合成 1 个进阶，3 个进阶合成 1 个特化；每次分解返还 3 个低一级芯片。</p>
 </section>
 <section id="crate" data-entry="buildings" class="entry manual-card">
 <div class="item-heading">
@@ -511,15 +601,18 @@
 <span>容器布局</span>
 </div>
 </div>
-<p>关箱时收集附近物品；关闭状态下，夜晚转白天时再收集一次。打开、烧毁或拆除时不收集，箱满或无法完全合堆时余物留在地上。</p>
-<p>关箱后按物品内部名称排序，不主动拆分或合并堆叠。所有角色可用；锤拆掉出内容物和 2 个木板。</p>
+<p>先放入要收集的物品作为样本；关箱时只收集箱内已有的物品种类，关闭状态下夜晚转白天再收集一次。<b>空箱不收集</b>。打开、烧毁或拆除时不收集，装不下的余物留在地上。</p>
+<p>关箱后按物品内部名称排序，整理本身不主动拆分或合并堆叠。所有角色可用；普通箱锤拆掉出内容物和 2 个木板。</p>
+<h3>升级木箱</h3>
+<p>使用 <b>1 个弹性空间制造器</b>升级，仍为 16 格，但每格可无限堆叠。升级后包铁变蓝，侧面显示金色向上箭头。升级状态与超量物品随存档保留。</p>
+<p class="muted">升级箱锤拆返还弹性空间制造器；超量物品按原生坍塌箱机制保留，恢复后仍为升级箱。</p>
 <div class="recipe">
 <span>制作配方</span>
 <b>
 <span class="material-label">
 <img class="material-thumb" src="assets/material-boards.png" alt="木板" width="32" height="32" loading="lazy">木板 ×5</span>
 </b>
-<small>科学机器 · 容器 / 建筑分类</small>
+<small>科学机器 · 绝区零分类</small>
 </div>
 </section>
 <section id="bangboo-nest" data-entry="buildings" class="entry manual-card">
@@ -555,9 +648,13 @@
 <span class="material-label">
 <img class="material-thumb" src="assets/material-transistor.png" alt="电子元件" width="32" height="32" loading="lazy">电子元件 ×5</span>
 </b>
-<small>炼金引擎 · 人物 / 建筑分类</small>
+<i>+</i>
+<b>
+<span class="material-label">齿轮 ×1</span>
+</b>
+<small>炼金引擎 · 绝区零分类</small>
 </div>
-<p class="muted">锤拆返还每种材料各 2 个。</p>
+<p class="muted">锤拆返还木板、石砖、金块与电子元件各 2 个。</p>
 </section>
 <section id="sharkboo" data-entry="system" class="entry manual-card">
 <div class="item-heading">
@@ -627,7 +724,7 @@
 <span class="material-label">
 <img class="material-thumb" src="assets/material-log.png" alt="木头" width="32" height="32" loading="lazy">木头 ×1</span>
 </b>
-<small>科学机器 · 人物 / 精炼分类</small>
+<small>科学机器 · 绝区零分类</small>
 </div>
 <h3>工作与战斗</h3>
 <dl class="profile-list">
@@ -703,7 +800,11 @@
 <span class="material-label">
 <img class="material-thumb" src="assets/material-transistor.png" alt="电子元件" width="32" height="32" loading="lazy">电子元件 ×3</span>
 </b>
-<small>炼金引擎 · 人物 / 建筑分类</small>
+<i>+</i>
+<b>
+<span class="material-label">齿轮 ×1</span>
+</b>
+<small>炼金引擎 · 绝区零分类</small>
 </div>
 <p class="muted">锤拆返还石砖 ×3、电量 ×1、金块 ×3、电子元件 ×1。</p>
 </section>
@@ -717,6 +818,7 @@
 </span>
 <a class="return-top" href="#core">↑ 返回顶部</a>
 </footer>
+<p class="muted">内容依据公共模组 <b>0.5.74-penetration-panel</b> 源码核对，更新于 2026 年 11 月 1 日；游戏内效果仍待实机验证。</p>
 <div class="rights-note">《绝区零》相关内容版权归米哈游所有，本项目为非官方同人模组。</div>
 </main>
 </div>
