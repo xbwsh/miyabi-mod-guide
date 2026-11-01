@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* Shared manual: one navigation system and a readable column on every page. */
 :root {
+  --card:#fdfcf9;
   --paper:#f8f7f3;
   --surface:#eeeee7;
   --side:#f1f1eb;
@@ -12,6 +13,7 @@
   color-scheme:light;
 }
 body.dark {
+  --card:#1d2e32;
   --paper:#18282b;
   --surface:#213337;
   --side:#152427;
@@ -451,6 +453,17 @@ main {
   border-bottom:1px solid var(--line);
   scroll-margin-top:88px;
 }
+/* Item boundaries are explicit; procedural chapters keep the open manual layout. */
+.entry.manual-card {
+  margin:28px 0;
+  padding:28px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:6px;
+}
+.manual-card > :last-child {
+  margin-bottom:0;
+}
 .quickstart h2 {
   font-size:23px;
   margin-bottom:22px;
@@ -489,7 +502,14 @@ main {
   margin-top:22px;
 }
 .ability {
-  margin:26px 0;
+  margin:16px 0;
+  padding:20px 24px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:6px;
+}
+.ability p:last-child {
+  margin-bottom:0;
 }
 .ability h3 {
   margin-top:0;
@@ -1238,6 +1258,13 @@ footer small {
   }
 }
 @media(max-width:580px) {
+  .entry.manual-card {
+    margin:22px 0;
+    padding:20px 18px;
+  }
+  .ability {
+    padding:18px;
+  }
   body {
     font-size:15px;
   }
