@@ -648,6 +648,11 @@ main {
   justify-content:center;
   margin:24px 0 32px;
 }
+.weapon-upgrade {
+  margin-top:28px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
 .upgrade-stage>img {
   width:82px;
   height:82px;

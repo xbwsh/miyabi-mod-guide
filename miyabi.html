@@ -9,7 +9,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=modicon-1">
 <link rel="icon" type="image/png" sizes="256x256" href="assets/modicon.png?v=modicon-1">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=manual-3">
+<link rel="stylesheet" href="style.css?v=manual-4">
 </head>
 <body>
 <script>try{document.body.classList.toggle('dark',localStorage.getItem('miyabi-theme')==='dark')}catch{}</script>
@@ -48,7 +48,6 @@
 <a href="#quickstart" data-tag="character">启用步骤</a>
 <a href="#combat" data-tag="combat">战斗天赋</a>
 <a href="#wuwei" data-tag="equipment">妖刀 · 无尾</a>
-<a href="#upgrade" data-tag="equipment">妖刀升级</a>
 <a href="#pack" data-tag="equipment">霰落星殿</a>
 <a href="#hairclip" data-tag="equipment">星见雅的发卡</a>
 <a href="#dawn-hat" data-tag="equipment">晓·渔夫帽</a>
@@ -211,6 +210,8 @@
 <nav class="section-nav" aria-label="妖刀章节导航">
 <a href="#wuwei-basic">普攻</a>
 <a href="#wuwei-skill">飞雪</a>
+<a href="#blade-repair">修复</a>
+<a href="#blade-upgrade">升级</a>
 <a href="#wuwei-recipe">配方</a>
 </nav>
 <h3 id="wuwei-basic">握持与命中</h3>
@@ -248,15 +249,7 @@
 </b>
 <small>科学机器 · 星见雅专属 · 人物 / 武器分类</small>
 </div>
-</section>
-<section id="upgrade" data-entry="equipment" class="entry">
-<h2>妖刀升级</h2>
-<nav class="section-nav" aria-label="妖刀升级目录">
-<a href="#blade-repair">修复</a>
-<a href="#blade-upgrade">升级效果</a>
-<a href="#blade-steps">升级步骤</a>
-<a href="#blade-legacy">旧存档</a>
-</nav>
+<div id="upgrade" class="weapon-upgrade">
 <div class="upgrade-stage">
 <img src="assets/blade.png" alt="普通妖刀">
 <div class="upgrade-requirements">
@@ -302,6 +295,7 @@
 </summary>
 <p>不再接受约束静电升级；旧存档已升级的妖刀保持升级状态。</p>
 </details>
+</div>
 </section>
 <section id="pack" data-entry="equipment" class="entry manual-card">
 <div class="item-heading">
