@@ -9,7 +9,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=modicon-1">
 <link rel="icon" type="image/png" sizes="256x256" href="assets/modicon.png?v=modicon-1">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=manual-1">
+<link rel="stylesheet" href="style.css?v=manual-2">
 </head>
 <body>
 <script>try{document.body.classList.toggle('dark',localStorage.getItem('miyabi-theme')==='dark')}catch{}</script>
@@ -220,44 +220,6 @@
 <li>目标缺少冰冻能力、处于免冻状态或具有无限冰抗时，改为增加 <b>10 普通物伤</b>，仍经过防御。</li>
 <li>普攻刀光随连续命中依次呈现：<b>横斩 → 上挑 → 环斩 → 交错连斩 → 收尾环刃</b>，第五段后循环。多道刀光仅为视觉效果，不增加单次伤害或冰冻次数。</li>
 </ul>
-<details class="media-disclosure">
-<summary id="combo-preview-title">五段刀光预览</summary>
-<div class="combo-preview" aria-labelledby="combo-preview-title">
-<div class="combo-heading">
-<div>
-<p>编译纹理离线合成 · 半速循环展示，实际遮挡与地面透视以游戏为准。</p>
-</div>
-<button type="button" class="combo-toggle" hidden>暂停动画</button>
-</div>
-<div class="combo-grid">
-<figure>
-<img src="assets/combo-1-still.webp" data-still="assets/combo-1-still.webp" data-motion="assets/combo-1.webp" alt="第 1 段：横斩刀光" width="286" height="330" loading="lazy">
-<figcaption>
-<span>01</span> 横斩</figcaption>
-</figure>
-<figure>
-<img src="assets/combo-2-still.webp" data-still="assets/combo-2-still.webp" data-motion="assets/combo-2.webp" alt="第 2 段：上挑刀光" width="286" height="330" loading="lazy">
-<figcaption>
-<span>02</span> 上挑</figcaption>
-</figure>
-<figure>
-<img src="assets/combo-3-still.webp" data-still="assets/combo-3-still.webp" data-motion="assets/combo-3.webp" alt="第 3 段：环斩刀光" width="286" height="330" loading="lazy">
-<figcaption>
-<span>03</span> 环斩</figcaption>
-</figure>
-<figure>
-<img src="assets/combo-4-still.webp" data-still="assets/combo-4-still.webp" data-motion="assets/combo-4.webp" alt="第 4 段：交错连斩刀光" width="286" height="330" loading="lazy">
-<figcaption>
-<span>04</span> 交错连斩</figcaption>
-</figure>
-<figure>
-<img src="assets/combo-5-still.webp" data-still="assets/combo-5-still.webp" data-motion="assets/combo-5.webp" alt="第 5 段：收尾环刃刀光" width="286" height="330" loading="lazy">
-<figcaption>
-<span>05</span> 收尾环刃</figcaption>
-</figure>
-</div>
-</div>
-</details>
 <p class="muted">同一目标连续有效命中才累积段数；换目标、挥空、受伤、冲刺、卸装或死亡会重置。停顿超过当前攻击间隔的 2.5 倍（最少 0.8 秒）也会重置。刀光按方向与目标体型调整，时长随攻速缩短。</p>
 <div class="lunge">
 <span class="keycap">鼠标右键</span>
@@ -268,29 +230,6 @@
 <p>冲刺两侧呈现分段青蓝火浪与碎星；有效命中播放蓝白交错刀光。配有专属冲刺音效，随动作阶段衔接，中断时停止。</p>
 </div>
 </div>
-<details class="media-disclosure">
-<summary id="feixue-preview-title">飞雪特效预览</summary>
-<div class="combo-preview feixue-preview" aria-labelledby="feixue-preview-title">
-<div class="combo-heading">
-<div>
-<p>当前编译纹理离线合成 · 半速循环；实际距离、地面透视和遮挡以游戏为准。</p>
-</div>
-<button type="button" class="combo-toggle" hidden>暂停动画</button>
-</div>
-<div class="combo-grid feixue-grid">
-<figure>
-<img src="assets/feixue-flame-still.webp" data-still="assets/feixue-flame-still.webp" data-motion="assets/feixue-flame.webp" alt="飞雪：青蓝火浪特效" width="440" height="330" loading="lazy">
-<figcaption>
-<span>01</span> 青蓝火浪</figcaption>
-</figure>
-<figure>
-<img src="assets/feixue-hit-still.webp" data-still="assets/feixue-hit-still.webp" data-motion="assets/feixue-hit.webp" alt="飞雪：命中交错刀光特效" width="440" height="330" loading="lazy">
-<figcaption>
-<span>02</span> 命中交错刀光</figcaption>
-</figure>
-</div>
-</div>
-</details>
 <div class="recipe" id="wuwei-recipe">
 <span>制作配方</span>
 <b>
@@ -673,8 +612,6 @@
 <script src="app.js?v=manual-1">
 </script>
 <script src="particles.js?v=1">
-</script>
-<script src="combo-preview.js?v=2">
 </script>
 </body>
 </html>
