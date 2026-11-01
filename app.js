@@ -39,7 +39,7 @@ function search() {
     writeSnippet(link, target, query);
   });
 
-  $('#count').textContent = String(count).padStart(2, '0');
+  $('#count').textContent = String(count);
   $('#empty').hidden = count > 0;
 }
 
@@ -73,10 +73,15 @@ backdrop.hidden = true;
 document.body.append(backdrop);
 
 function openMenu() {
+  if (matchMedia('(min-width: 851px)').matches) {
+    searchInput.focus();
+    return;
+  }
   sidebar.classList.add('open');
   menu.setAttribute('aria-expanded', 'true');
   backdrop.hidden = false;
   document.body.classList.add('nav-open');
+  document.querySelector('.page').inert = true;
   searchInput.focus();
 }
 
@@ -86,6 +91,7 @@ function closeMenu(restoreFocus = false) {
   menu.setAttribute('aria-expanded', 'false');
   backdrop.hidden = true;
   document.body.classList.remove('nav-open');
+  document.querySelector('.page').inert = false;
   if (wasOpen && restoreFocus) menu.focus();
 }
 
@@ -106,6 +112,18 @@ document.addEventListener('keydown', event => {
     openMenu();
   }
   if (event.key === 'Escape') closeMenu(true);
+  if (event.key === 'Tab' && sidebar.classList.contains('open')) {
+    const controls = [...sidebar.querySelectorAll('a, button, input')].filter(item => item.getClientRects().length && !item.hidden);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
 });
 
 nav.forEach(link => link.addEventListener('click', () => {
@@ -126,10 +144,13 @@ function revealLinkedDetails(hash) {
   try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
   const target = document.getElementById(id);
   if (!target) return;
-  const details = target.closest('details');
-  if (details) details.open = true;
+  let details = target.closest('details');
+  while (details) {
+    details.open = true;
+    details = details.parentElement?.closest('details');
+  }
 }
-document.querySelectorAll('.section-nav a[href^="#"]').forEach(link => {
+document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', () => revealLinkedDetails(link.hash));
 });
 window.addEventListener('hashchange', () => revealLinkedDetails(location.hash));
@@ -148,7 +169,12 @@ function updateActiveSection() {
   }
   const last = sections[sections.length - 1];
   if (atBottom && last.getBoundingClientRect().top < window.innerHeight) active = last;
-  nav.forEach(link => link.classList.toggle('active', link.hash === `#${active.id}`));
+  nav.forEach(link => {
+    const selected = link.hash === `#${active.id}`;
+    link.classList.toggle('active', selected);
+    if (selected) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
 }
 let scrollUpdatePending = false;
 function scheduleActiveSectionUpdate() {
@@ -177,7 +203,7 @@ const skins = {
   dawn: {
     name: '晓',
     image: 'assets/dawn.png',
-    description: '就像黎明即将来临。浅色衣装、白裤袜与小白鞋，渔夫帽和围巾需作为独立装备穿戴。'
+    description: '浅色衣装、白裤袜与小白鞋，渔夫帽和围巾需作为独立装备穿戴。'
   }
 };
 
@@ -185,6 +211,7 @@ document.querySelectorAll('[data-skin]').forEach(button => button.addEventListen
   const skin = skins[button.dataset.skin];
   document.querySelectorAll('[data-skin]').forEach(item => {
     item.setAttribute('aria-selected', String(item === button));
+    item.tabIndex = item === button ? 0 : -1;
   });
   $('#skin-art').src = skin.image;
   $('#skin-art').alt = `${skin.name}衣柜简笔画`;
@@ -218,4 +245,23 @@ $('#copy')?.addEventListener('click', async () => {
   } catch {
     toast('群号：1131834002，可长按或选中复制');
   }
+});
+
+search();
+
+// Native tab keys keep the wardrobe usable without a pointer.
+const skinButtons = [...document.querySelectorAll('[data-skin]')];
+skinButtons.forEach((button, index) => {
+  button.tabIndex = button.getAttribute('aria-selected') === 'true' ? 0 : -1;
+  button.addEventListener('keydown', event => {
+    let next;
+    if (event.key === 'ArrowRight') next = (index + 1) % skinButtons.length;
+    if (event.key === 'ArrowLeft') next = (index - 1 + skinButtons.length) % skinButtons.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = skinButtons.length - 1;
+    if (next === undefined) return;
+    event.preventDefault();
+    skinButtons[next].click();
+    skinButtons[next].focus();
+  });
 });
