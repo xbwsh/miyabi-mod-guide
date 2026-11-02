@@ -1744,3 +1744,15 @@ body:has(.reading-layout) .entry.manual-card,
 @media (max-width: 580px) {
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
 }
+
+/* Keep the setup requirements together in one readable section. */
+body:has(.reading-layout) .quickstart {
+  padding: clamp(20px, 3.5vw, 30px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.quickstart-heading h2 { margin: 0 0 8px; }
+.quickstart-heading p { margin: 0; color: var(--muted); }
+.quickstart-requirement { margin: 20px 0 0; }
+.quickstart-more { margin-top: 16px; }
