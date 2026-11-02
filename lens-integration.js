@@ -17,6 +17,22 @@ for (const selector of selectors) {
       material: 'thick',
       scene: document.body.classList.contains('dark') ? 'ocean' : 'aurora',
       motion: false,
+      artwork(ctx, { width, height, dpr }) {
+        const dark = document.body.classList.contains('dark');
+        const sidebar = stage.closest('.sidebar');
+        ctx.fillStyle = sidebar ? (dark ? '#152427' : '#f1f1eb') : (dark ? '#18282b' : '#f8f7f3');
+        ctx.fillRect(0, 0, width, height);
+        if (sidebar) return;
+        ctx.strokeStyle = dark ? 'rgba(165,203,208,.045)' : 'rgba(50,101,112,.055)';
+        ctx.lineWidth = dpr;
+        const step = 48 * dpr;
+        for (let x = 0; x < width; x += step) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+        }
+        for (let y = 0; y < height; y += step) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+        }
+      },
       audio: { enabled: false, storage: null }
     });
     system.sound.set({ enabled: false });

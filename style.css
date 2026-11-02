@@ -1496,7 +1496,9 @@ body:has(.reading-layout) .quickstart > :last-child { margin-bottom: 0; }
   border-radius: 15px;
   color: var(--ink);
   font: inherit;
+  background: var(--paper);
 }
+.sidebar .manual-glass-stage.lg-stage { background: var(--side); }
 .manual-glass-stage .manual-glass-surface {
   border-radius: 11px;
   color: var(--ink);
