@@ -1474,3 +1474,36 @@ body.dark .manual-glass-stage .site-switch a,
 body.dark .manual-glass-stage .text-link,
 body.dark .manual-glass-stage .search { color: #f1f8f6; }
 body.dark .manual-glass-stage .search input::placeholder { color: #f1f8f6; opacity: .9; }
+
+/* Lens stages wrap each independent section and preserve the original spacing. */
+.manual-glass-stage .manual-glass-surface { margin: 0; }
+main > .manual-glass-stage,
+.entries > .manual-glass-stage,
+#combat > .manual-glass-stage { margin: 24px 0; }
+.sidebar .manual-glass-stage .filters { margin: 0; }
+.top-actions .manual-glass-stage { padding: 3px; }
+.top-actions .manual-glass-stage button { border-radius: 8px; }
+.manual-glass-stage.fallback .manual-glass-surface {
+  background: rgba(253, 252, 249, .82);
+  border-color: var(--line);
+  box-shadow: inset 0 1px 2px #fff, 0 3px 10px #253c3e16;
+}
+body.dark .manual-glass-stage.fallback .manual-glass-surface {
+  background: rgba(29, 46, 50, .94);
+  box-shadow: inset 0 1px 2px #b4d2d21c, 0 3px 10px #0003;
+}
+.manual-glass-stage > .hero,
+.manual-glass-stage > .stats,
+.manual-glass-stage > .entry,
+.manual-glass-stage > .home-section { padding: 28px; }
+@media (max-width: 580px) {
+  .manual-glass-stage > .hero,
+  .manual-glass-stage > .stats,
+  .manual-glass-stage > .entry,
+  .manual-glass-stage > .home-section { padding: 20px; }
+}
+
+.manual-glass-control { border-radius: 8px; padding: 4px 9px; }
+.manual-glass-stage .site-switch a { border-radius: 8px; }
+.manual-glass-stage.fallback .manual-glass-control { background: #ffffff26; }
+body.dark .manual-glass-stage.fallback .manual-glass-control { background: #ffffff0d; }

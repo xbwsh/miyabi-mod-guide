@@ -1,17 +1,30 @@
 import { createGlassSystem } from './vendor/lens/runtime.js';
 
-// Three small stages limit GPU use while preserving the original HTML controls.
-const selectors = ['.site-switch', '.sidebar .search', '#quickstart, .home-section, #profile'];
+// Keep semantic controls intact and give each visible card its own bounded stage.
+const surfaces = document.querySelectorAll([
+  '.site-switch', '.sidebar .search', '.sidebar .filters', '.top-actions button',
+  'main > .hero', 'main > .stats', 'main > .quickstart',
+  '.home-section', '.entries > .entry:not(#combat)', '#combat > .ability'
+].join(','));
 const systems = [];
-for (const selector of selectors) {
-  const surface = document.querySelector(selector);
-  if (!surface) continue;
+for (const surface of surfaces) {
   const stage = document.createElement('div');
   stage.className = 'manual-glass-stage';
   surface.before(stage);
   stage.append(surface);
   surface.classList.add('lg-surface', 'manual-glass-surface');
-  surface.dataset.glass = 'panel';
+  surface.dataset.glass = surface.matches('button') ? 'button' : 'panel';
+  surface.querySelectorAll('.site-switch a, .filters button, .hero-links a, .section-nav a, [data-skin]').forEach(control => {
+    control.classList.add('lg-surface', 'manual-glass-control');
+    control.dataset.glass = 'button';
+  });
+  // Very tall and expandable sections can exceed WebGL texture limits. Keep
+  // their readable glass fallback instead of allocating a page-sized canvas.
+  if (surface.scrollHeight > 1600 || surface.querySelector('details')) {
+    stage.classList.add('lg-stage', 'fallback');
+    stage.dataset.scene = document.body.classList.contains('dark') ? 'ocean' : 'aurora';
+    continue;
+  }
   try {
     const system = createGlassSystem(stage, {
       material: 'thick',
@@ -45,6 +58,7 @@ for (const selector of selectors) {
 const themeObserver = new MutationObserver(() => {
   const scene = document.body.classList.contains('dark') ? 'ocean' : 'aurora';
   systems.forEach(system => system.setScene(scene));
+  document.querySelectorAll('.manual-glass-stage.fallback').forEach(stage => { stage.dataset.scene = scene; });
 });
 themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 window.addEventListener('pagehide', event => {
