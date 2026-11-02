@@ -1702,3 +1702,34 @@ body:has(.reading-layout) .entry.manual-card,
   .set-card { padding: 16px; }
   .set-grid { gap: 12px; }
 }
+
+/* Give large displays more room while keeping long lines comfortable to read. */
+@media (min-width: 1600px) {
+  body { font-size: 18px; }
+  main { max-width: 1080px; }
+  .sidebar { width: 280px; padding-inline: 26px; }
+  .page { margin-left: 280px; }
+  .skip-link { left: 300px; }
+  .hero-copy .lead { font-size: 18px; }
+  h1 { font-size: 40px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 20px; }
+  #nav > a { font-size: 16px; }
+  .site-switch a, .search input, .topbar { font-size: 15px; }
+  .filters button, .nav-caption, .side-bottom, .side-bottom small { font-size: 14px; }
+  .stats .stat-text, .stat-text > span { font-size: 14px; }
+}
+@media (min-width: 2400px) {
+  body { font-size: 20px; }
+  main { max-width: 1200px; }
+  .sidebar { width: 320px; padding-inline: 30px; }
+  .page { margin-left: 320px; }
+  .skip-link { left: 340px; }
+  .hero-copy .lead { font-size: 20px; }
+  h1 { font-size: 44px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 22px; }
+  #nav > a { font-size: 17px; }
+  .site-switch a, .search input, .topbar { font-size: 16px; }
+  .stats .stat-text, .stat-text > span { font-size: 15px; }
+}
