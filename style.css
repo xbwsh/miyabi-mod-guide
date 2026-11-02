@@ -1454,17 +1454,34 @@ footer small {
   }
 }
 
-/* Independent entries reuse the original sections and keep their anchor URLs. */
-.entry-mode [hidden] { display: none !important; }
-.entry-mode #nav a { display: flex; align-items: center; gap: 10px; }
-.nav-entry-icon { width: 28px; height: 28px; object-fit: contain; flex: none; }
-.entry-mode main { position: relative; padding-top: 30px; }
-.entry-mode .entry.manual-card { background: var(--card); }
-.related-entries { display: none; }
-@media (min-width: 1400px) {
-  .entry-mode main { max-width: 1150px; padding-right: 220px; }
-  .related-entries { display: flex; position: absolute; top: 48px; right: 24px; width: 160px; flex-direction: column; gap: 10px; }
-  .related-entries h2 { font-size: 14px; margin: 0 0 5px; }
-  .related-entries a { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
-  .related-entries a:hover { color: var(--accent); }
+
+/* Each manual section has a clear, consistent reading boundary. */
+body:has(.reading-layout) main > .hero,
+body:has(.reading-layout) main > .stats,
+body:has(.reading-layout) .quickstart,
+body:has(.reading-layout) .entry,
+body:has(.reading-layout) .particle-gallery,
+body:has(.reading-layout) .entries > details {
+  margin: 24px 0;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+/* Abilities are already individual cards, so their group needs no outer card. */
+body:has(.reading-layout) #combat {
+  padding: 16px 0;
+  background: transparent;
+  border: 0;
+}
+body:has(.reading-layout) .entry > :last-child,
+body:has(.reading-layout) .quickstart > :last-child { margin-bottom: 0; }
+@media (max-width: 580px) {
+  body:has(.reading-layout) main > .hero,
+  body:has(.reading-layout) main > .stats,
+  body:has(.reading-layout) .quickstart,
+  body:has(.reading-layout) .entry,
+  body:has(.reading-layout) .particle-gallery,
+  body:has(.reading-layout) .entries > details { padding: 20px; }
+  body:has(.reading-layout) #combat { padding: 12px 0; }
 }

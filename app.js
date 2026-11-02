@@ -5,91 +5,6 @@ const menu = $('#menu');
 const sidebar = $('#sidebar');
 let filter = 'all';
 
-// Each existing section remains the source of truth, including its old anchors.
-const entryMode = document.body.dataset.entries === 'true';
-const entrySections = entryMode ? nav.map(link => document.querySelector(link.hash)).filter(Boolean) : [];
-const entryIcons = {
-  overview: 'default.png', combat: 'blade.png', wuwei: 'blade.png', pack: 'pack.png',
-  hairclip: 'hairclip.png', 'dawn-hat': 'dawn-hat.png', 'dawn-scarf': 'dawn-scarf.png',
-  'dawn-bag': 'dawn-bag.png', companion: 'xiaowuwei.webp', wardrobe: 'dawn.png',
-  core: 'zzz-modicon.png', profile: 'avatar.png', anomaly: 'anomaly-component.png',
-  drive: 'drive-disc.png', materials: 'resonance-core.png', yunkui: 'ether-battery.png',
-  'record-shop': 'recordshop.png', chips: 'anomaly-component.png', crate: 'crate.png',
-  'bangboo-nest': 'bangboo-nest.png', sharkboo: 'sharkboo.png', beacon: 'beacon.png'
-};
-const relatedEntries = {
-  overview: ['combat', 'wuwei', 'pack', 'hairclip'], combat: ['wuwei', 'pack'],
-  wuwei: ['combat', 'pack', 'hairclip'], pack: ['combat', 'wuwei'],
-  hairclip: ['dawn-hat', 'dawn-scarf', 'dawn-bag'], 'dawn-hat': ['hairclip', 'dawn-scarf', 'dawn-bag'],
-  'dawn-scarf': ['dawn-hat', 'dawn-bag', 'hairclip'], 'dawn-bag': ['dawn-hat', 'dawn-scarf'],
-  core: ['profile', 'drive', 'record-shop', 'bangboo-nest'], profile: ['drive', 'anomaly'],
-  anomaly: ['profile', 'drive'], drive: ['profile', 'record-shop', 'materials'],
-  materials: ['drive', 'record-shop', 'yunkui'], yunkui: ['materials', 'record-shop'],
-  'record-shop': ['drive', 'materials', 'chips'], chips: ['record-shop', 'crate'],
-  crate: ['chips', 'beacon'], 'bangboo-nest': ['sharkboo', 'beacon'],
-  sharkboo: ['bangboo-nest', 'beacon'], beacon: ['bangboo-nest', 'crate']
-};
-let selectedEntry;
-if (entryMode) {
-  document.body.classList.add('entry-mode');
-  document.querySelector('.nav-caption').firstChild.textContent = '词条导航 ';
-  nav.forEach(link => {
-    const icon = entryIcons[link.hash.slice(1)];
-    if (!icon) return;
-    const image = document.createElement('img');
-    image.src = `assets/${icon}`;
-    image.alt = '';
-    image.className = 'nav-entry-icon';
-    link.prepend(image);
-  });
-  const related = document.createElement('aside');
-  related.className = 'related-entries';
-  related.setAttribute('aria-label', '关联词条');
-  document.querySelector('main').append(related);
-  const extras = [
-    [document.querySelector('.stats'), 'overview'],
-    [document.querySelector('.particle-gallery'), 'guide'],
-    [document.getElementById('core') && document.querySelector('.entries > details'), 'core']
-  ].filter(([element]) => element);
-  function selectEntry() {
-    let id;
-    try { id = decodeURIComponent(location.hash.slice(1)); } catch { id = ''; }
-    const target = id && document.getElementById(id);
-    const extraOwner = target && extras.find(([element]) => element === target || element.contains(target));
-    const section = entrySections.find(item => item === target || (target && item.contains(target))) ||
-      (extraOwner && entrySections.find(item => item.id === extraOwner[1])) || entrySections[0];
-    const changed = selectedEntry !== section;
-    selectedEntry = section;
-    entrySections.forEach(item => { item.hidden = item !== section; });
-    extras.forEach(([element, owner]) => { element.hidden = section.id !== owner; });
-    nav.forEach(link => {
-      const active = link.hash === `#${section.id}`;
-      link.classList.toggle('active', active);
-      if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-    });
-    related.replaceChildren();
-    const links = (relatedEntries[section.id] || []).map(key => nav.find(link => link.hash === `#${key}`)).filter(Boolean);
-    related.hidden = !links.length;
-    if (links.length) {
-      const title = document.createElement('h2');
-      title.textContent = '关联词条';
-      related.append(title);
-      links.forEach(link => {
-        const item = link.cloneNode(true);
-        item.removeAttribute('aria-current');
-        item.classList.remove('active');
-        item.querySelector('.nav-match')?.remove();
-        related.append(item);
-      });
-    }
-    revealLinkedDetails(location.hash);
-    if (target && (changed || target !== section)) requestAnimationFrame(() => target.scrollIntoView());
-  }
-  window.addEventListener('hashchange', selectEntry);
-  // Runs after the disclosure helper is initialized below.
-  window.addEventListener('DOMContentLoaded', selectEntry, { once: true });
-}
-
 function writeSnippet(link, target, query) {
   link.querySelector('.nav-match')?.remove();
   if (!query || link.hidden) return;
@@ -244,7 +159,7 @@ revealLinkedDetails(location.hash);
 // Use document order so short final sections can become active at the bottom.
 const sections = nav.map(link => document.querySelector(link.hash)).filter(Boolean);
 function updateActiveSection() {
-  if (!sections.length || entryMode) return;
+  if (!sections.length) return;
   const scrollRoot = document.scrollingElement;
   const atBottom = scrollRoot.scrollHeight > scrollRoot.clientHeight &&
     scrollRoot.scrollTop + scrollRoot.clientHeight >= scrollRoot.scrollHeight - 2;
