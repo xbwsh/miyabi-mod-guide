@@ -1756,3 +1756,45 @@ body:has(.reading-layout) .quickstart {
 .quickstart-heading p { margin: 0; color: var(--muted); }
 .quickstart-requirement { margin: 20px 0 0; }
 .quickstart-more { margin-top: 16px; }
+
+/* Outfit choices remain keyboard-operable and show their associated artwork. */
+.skin-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  border: 0;
+}
+.skin-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.skin-tabs button img { width: 36px; height: 44px; flex: 0 0 36px; object-fit: contain; }
+.skin-tabs button span { min-width: 0; overflow-wrap: anywhere; }
+.skin-tabs button[aria-selected=true] {
+  color: var(--ink);
+  background: var(--soft);
+  border: 2px solid var(--accent);
+  padding: 9px;
+}
+#guide > details > summary {
+  padding: 14px 40px 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: none;
+}
+#guide > details > summary::after { right: 16px; }
+#guide > details > p, #guide > details > ul { margin: 16px 16px; padding-bottom: 0; }
+@media (max-width: 580px) {
+  .skin-tabs { gap: 8px; }
+  .skin-tabs button { flex-direction: column; text-align: center; gap: 4px; padding: 8px 4px; }
+  .skin-tabs button[aria-selected=true] { padding: 7px 3px; }
+}
