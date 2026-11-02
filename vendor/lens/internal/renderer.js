@@ -340,11 +340,15 @@ export class GlassRenderer {
     // ResizeObserver can deliver after context loss or teardown.
     if(this.destroyed||this.suspended||this.lost||!this.gl||this.gl.isContextLost?.())return;
     const rect=this.stage.getBoundingClientRect();
-    this.dpr=Math.min(devicePixelRatio||1,1.75);
-    const width=Math.max(1,Math.round(rect.width*this.dpr)),height=Math.max(1,Math.round(rect.height*this.dpr));
+    const gl=this.gl;
+    // Bound long document cards to the GPU limits and a four-megapixel canvas.
+    // DOM text keeps its native resolution; only the optical backdrop is scaled.
+    const maxSize=Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE),gl.getParameter(gl.MAX_RENDERBUFFER_SIZE),4096);
+    const areaScale=Math.sqrt(4000000/Math.max(1,rect.width*rect.height));
+    this.dpr=Math.min(devicePixelRatio||1,1.75,maxSize/Math.max(1,rect.width),maxSize/Math.max(1,rect.height),areaScale);
+    const width=Math.max(1,Math.floor(rect.width*this.dpr)),height=Math.max(1,Math.floor(rect.height*this.dpr));
     if (width===this.width&&height===this.height)return;
     this.width=width;this.height=height;this.canvas.width=width;this.canvas.height=height;
-    const gl=this.gl;
     for(const target of this.targets){
       gl.bindTexture(gl.TEXTURE_2D,target.texture);
       gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,width,height,0,gl.RGBA,gl.UNSIGNED_BYTE,null);

@@ -4,7 +4,7 @@ import { createGlassSystem } from './vendor/lens/runtime.js';
 const surfaces = document.querySelectorAll([
   '.site-switch', '.sidebar .search', '.sidebar .filters', '.top-actions button',
   'main > .hero', 'main > .stats', 'main > .quickstart',
-  '.home-section', '.entries > .entry:not(#combat)', '#combat > .ability'
+  '.home-section', '.entries > .entry:not(#combat)', '.entries > details', '#combat > .ability'
 ].join(','));
 const systems = [];
 for (const surface of surfaces) {
@@ -14,17 +14,14 @@ for (const surface of surfaces) {
   stage.append(surface);
   surface.classList.add('lg-surface', 'manual-glass-surface');
   surface.dataset.glass = surface.matches('button') ? 'button' : 'panel';
-  surface.querySelectorAll('.site-switch a, .filters button, .hero-links a, .section-nav a, [data-skin]').forEach(control => {
+  surface.querySelectorAll('.site-switch a, .filters button, .hero-links a, .section-nav a, [data-skin], .community button, details > summary').forEach(control => {
     control.classList.add('lg-surface', 'manual-glass-control');
     control.dataset.glass = 'button';
   });
-  // Very tall and expandable sections can exceed WebGL texture limits. Keep
-  // their readable glass fallback instead of allocating a page-sized canvas.
-  if (surface.scrollHeight > 1600 || surface.querySelector('details')) {
-    stage.classList.add('lg-stage', 'fallback');
-    stage.dataset.scene = document.body.classList.contains('dark') ? 'ocean' : 'aurora';
-    continue;
-  }
+  surface.querySelectorAll('.manual-row, .set-card, .recipe, .numbers').forEach(panel => {
+    panel.classList.add('lg-surface', 'manual-glass-inner');
+    panel.dataset.glass = 'panel';
+  });
   try {
     const system = createGlassSystem(stage, {
       material: 'thick',

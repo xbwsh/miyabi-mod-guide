@@ -1507,3 +1507,11 @@ body.dark .manual-glass-stage.fallback .manual-glass-surface {
 .manual-glass-stage .site-switch a { border-radius: 8px; }
 .manual-glass-stage.fallback .manual-glass-control { background: #ffffff26; }
 body.dark .manual-glass-stage.fallback .manual-glass-control { background: #ffffff0d; }
+
+.manual-glass-inner { border-radius: 9px; }
+.manual-glass-stage .manual-row { border-radius: 9px; }
+.manual-glass-stage .manual-row:first-child { padding-top: 24px; }
+.manual-glass-stage .manual-row:last-child { padding-bottom: 24px; }
+.manual-glass-stage .manual-row { padding-left: 12px; padding-right: 12px; }
+
+.manual-glass-stage > details { margin: 0; padding: 20px 24px; }
