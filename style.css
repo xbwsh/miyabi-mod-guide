@@ -1511,3 +1511,161 @@ body:has(.reading-layout) .entries > details {
   border-radius: 11px;
   box-shadow: inset 0 1px 1px var(--glass-rim), 0 3px 9px var(--glass-shadow);
 }
+
+/* Reading boundaries: one outer card per ability or item, with open content inside. */
+body:has(.reading-layout) main > .hero,
+body:has(.reading-layout) main > .stats,
+body:has(.reading-layout) .quickstart,
+body:has(.reading-layout) .entry:not(.manual-card):not(#combat),
+body:has(.reading-layout) .entries > details {
+  padding: 40px 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+}
+body:has(.reading-layout) .entry.manual-card,
+#combat > .ability {
+  min-width: 0;
+  padding: clamp(20px, 3.5vw, 30px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+#combat > .ability { margin: 16px 0; }
+.manual-card > *, .ability > *, .set-card > *, .manual-row > * {
+  min-width: 0;
+  max-width: 100%;
+}
+.manual-card h3, .ability h3 { line-height: 1.4; }
+.manual-card p, .ability p, .set-effect dd { overflow-wrap: anywhere; }
+.manual-card .numbers, .manual-card .recipe {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 16px 0;
+}
+.manual-card .numbers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 105px), 1fr));
+  gap: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.manual-card .recipe { padding-bottom: 0; }
+.set-grid { gap: 0 24px; }
+.set-card {
+  padding: 18px 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.set-card-heading h3 { overflow-wrap: anywhere; }
+.manual-list { gap: 12px; }
+.manual-row, .manual-row:first-child, .manual-row:last-child {
+  min-width: 0;
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.table-wrap { max-width: 100%; }
+@media (max-width: 580px) {
+  body:has(.reading-layout) main > .hero,
+  body:has(.reading-layout) main > .stats,
+  body:has(.reading-layout) .quickstart,
+  body:has(.reading-layout) .entry:not(.manual-card):not(#combat),
+  body:has(.reading-layout) .entries > details { padding: 28px 0; }
+  .item-heading { gap: 12px; align-items: flex-start; }
+  .item-heading > div:first-child { min-width: 0; }
+  .manual-card .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .manual-row, .manual-row:first-child, .manual-row:last-child { padding: 16px; }
+}
+
+/* A shared spacing rhythm keeps every content block inside its card boundary. */
+.manual-card, .ability, .manual-row, .set-card {
+  --content-gap: 16px;
+  --section-gap: 24px;
+}
+.manual-card > *,
+.ability > div > *,
+.manual-card .weapon-upgrade > *,
+.manual-card .two-col > div > *,
+.manual-card .lunge > div > * {
+  margin-block: 0;
+}
+.manual-card > * + *,
+.ability > div > * + *,
+.manual-card .weapon-upgrade > * + *,
+.manual-card .two-col > div > * + *,
+.manual-card .lunge > div > * + * {
+  margin-block-start: var(--content-gap);
+}
+.manual-card > h3,
+.manual-card > .numbers,
+.manual-card > .section-nav,
+.manual-card > .table-wrap,
+.manual-card > .profile-list,
+.manual-card > .recipe,
+.manual-card > .lunge,
+.manual-card > .weapon-upgrade,
+.manual-card .weapon-upgrade > .steps {
+  margin-block-start: var(--section-gap);
+}
+.manual-card > :first-child,
+.ability > div > :first-child,
+.manual-card .weapon-upgrade > :first-child,
+.manual-card .two-col > div > :first-child,
+.manual-card .lunge > div > :first-child { margin-block-start: 0; }
+.manual-card h3 + p,
+.manual-card h3 + ul,
+.manual-card h3 + ol,
+.ability h3 + p { margin-block-start: 8px; }
+.manual-card .weapon-upgrade { padding-top: var(--section-gap); }
+.manual-card .numbers,
+.manual-card .recipe,
+.manual-card .section-nav,
+.manual-card .lunge { padding-block: var(--content-gap); }
+.manual-card .recipe { padding-bottom: 0; }
+.manual-card .table-wrap,
+.manual-card .profile-list,
+.manual-card .upgrade-stage,
+.manual-card .steps { min-width: 0; }
+.manual-card .steps > div { margin: 0; }
+.manual-card .steps > div + div { margin-top: var(--content-gap); }
+.manual-card .profile-list > div { padding-block: var(--content-gap); }
+.manual-card .profile-list > div:last-child { padding-bottom: 0; }
+.manual-row h3, .manual-row p { margin-block: 0; }
+.manual-row h3 + p { margin-top: 8px; }
+.set-card-heading { padding-bottom: var(--content-gap); }
+.set-effect { padding-top: var(--content-gap); }
+.set-effect + .set-effect { margin-top: var(--content-gap); }
+@media (max-width: 580px) {
+  .manual-card, .ability, .manual-row, .set-card {
+    --content-gap: 14px;
+    --section-gap: 20px;
+  }
+}
+
+/* Recipe content has the same inset on all four sides, including inside items. */
+.recipe, .manual-card .recipe {
+  min-width: 0;
+  max-width: 100%;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.recipe > b, .recipe > small, .recipe > span { min-width: 0; }
+.recipe small { overflow-wrap: anywhere; }
+.recipe .material-label { max-width: 100%; white-space: normal; }
+.recipe .material-thumb { flex: 0 0 auto; }
+@media (max-width: 580px) {
+  .recipe, .manual-card .recipe { padding: 14px 16px; }
+}
