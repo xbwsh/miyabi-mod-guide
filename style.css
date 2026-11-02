@@ -10,6 +10,7 @@
   --line:#d8dfd9;
   --accent:#326570;
   --soft:#e8efeb;
+  --grid-line:rgba(50,101,112,.055);
   color-scheme:light;
 }
 body.dark {
@@ -22,6 +23,7 @@ body.dark {
   --line:#35484b;
   --accent:#a5cbd0;
   --soft:#263e41;
+  --grid-line:rgba(165,203,208,.045);
   color-scheme:dark;
 }
 * {
@@ -33,7 +35,9 @@ html {
 }
 body {
   margin:0;
-  background:var(--paper);
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:48px 48px;
   color:var(--ink);
   font:16px/1.85 "Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;
 }
