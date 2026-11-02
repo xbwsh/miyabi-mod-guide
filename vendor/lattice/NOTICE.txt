@@ -1,6 +1,0 @@
-Lattice Design System, copyright (c) 2026 DayDreamInAReverie.
-Source: https://github.com/ruiqichenbiec/design-systems
-Source revision: 7a424c93b9be13cf835b91ea67495fec2ec0584e
-bundle.js is the original lattice/project/components/bundle.js and includes three.js.
-See LICENSE and THREE-LICENSE.txt for the respective license terms.
-The image adapter is maintained separately in lattice-melon.js.

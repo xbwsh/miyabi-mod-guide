@@ -18,7 +18,6 @@
 - `style.css`：布局、移动端和主题。
 - `app.js`：搜索、衣装切换、主题选择与群号复制。
 - `assets/`：随网站保存的图片。
-- `particles.js`：桌面端表情点阵互动，窄屏隐藏并按可见性暂停。
 - `legacy-links.js`：将旧首页书签跳转到对应手册。
 - `tools/check-site.py`：检查 HTML 结构、唯一 ID、站内链接与资源引用。
 - `.github/workflows/pages.yml`：自动部署配置。
