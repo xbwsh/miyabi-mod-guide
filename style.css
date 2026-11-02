@@ -1669,3 +1669,35 @@ body:has(.reading-layout) .entry.manual-card,
 @media (max-width: 580px) {
   .recipe, .manual-card .recipe { padding: 14px 16px; }
 }
+
+/* Public guide: the drive sets use the same inset and boundary as manual cards. */
+.set-grid { gap: 16px; }
+.set-card {
+  min-width: 0;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.set-card-heading { min-width: 0; }
+.set-card-heading img { flex: 0 0 32px; }
+.set-card dl, .set-effect, .set-effect dd { min-width: 0; }
+.set-effect dd { overflow-wrap: anywhere; }
+.guide-details > summary {
+  padding: 14px 40px 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: none;
+}
+.guide-details > summary::after { right: 16px; }
+.guide-details-content { min-width: 0; padding: 16px 0 14px; }
+@media (min-width: 581px) and (max-width: 1100px) {
+  .set-card dl { gap: 16px; }
+  .set-effect + .set-effect { margin-top: 0; }
+}
+@media (max-width: 580px) {
+  .set-card { padding: 16px; }
+  .set-grid { gap: 12px; }
+}
