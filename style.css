@@ -1684,14 +1684,15 @@ body:has(.reading-layout) .entry.manual-card,
 .set-card-heading img { flex: 0 0 32px; }
 .set-card dl, .set-effect, .set-effect dd { min-width: 0; }
 .set-effect dd { overflow-wrap: anywhere; }
-.guide-details > summary {
+.guide-details > summary, .entries > details > summary {
   padding: 14px 40px 14px 16px;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--card);
   box-shadow: none;
 }
-.guide-details > summary::after { right: 16px; }
+.guide-details > summary::after, .entries > details > summary::after { right: 16px; }
+.entries > details > p { margin: 16px 0 0; padding: 0; }
 .guide-details-content { min-width: 0; padding: 16px 0 14px; }
 @media (min-width: 581px) and (max-width: 1100px) {
   .set-card dl { gap: 16px; }
