@@ -1,0 +1,5 @@
+Lens Design System, copyright (c) 2026 DayDreamInAReverie.
+Source: https://github.com/ruiqichenbiec/design-systems
+Source revision: 7a424c93b9be13cf835b91ea67495fec2ec0584e
+The original MIT license is included in vendor/lens/LICENSE.
+The files under vendor/lens are copied from lens/lab/design-system, with the sample background word removed in internal/renderer.js; the license and this notice were added.

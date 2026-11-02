@@ -1489,3 +1489,32 @@ body:has(.reading-layout) .quickstart > :last-child { margin-bottom: 0; }
   body:has(.reading-layout) .entries > details { padding: 20px; }
   body:has(.reading-layout) #combat { padding: 12px 0; }
 }
+
+/* Lens pilot: original GPU material behind existing semantic controls. */
+.manual-glass-stage.lg-stage {
+  padding: 6px;
+  border-radius: 15px;
+  color: var(--ink);
+  font: inherit;
+}
+.manual-glass-stage .manual-glass-surface {
+  border-radius: 11px;
+  color: var(--ink);
+}
+.sidebar .manual-glass-stage { margin: 0 0 12px; flex: none; }
+.sidebar .manual-glass-stage .site-switch,
+.sidebar .manual-glass-stage .search { margin: 0; }
+.sidebar .manual-glass-stage .site-switch { padding: 5px; border: 0; }
+.sidebar .manual-glass-stage .search { min-width: 0; }
+main > .manual-glass-stage,
+.entries > .manual-glass-stage { margin: 24px 0; }
+.manual-glass-stage #quickstart,
+.manual-glass-stage .home-section,
+.manual-glass-stage #profile { margin: 0; border-radius: 11px; }
+.manual-glass-stage.webgl-ready .manual-glass-surface { background: transparent; }
+body.dark .manual-glass-stage.lg-stage { color: var(--ink); }
+
+body.dark .manual-glass-stage .site-switch a,
+body.dark .manual-glass-stage .text-link,
+body.dark .manual-glass-stage .search { color: #f1f8f6; }
+body.dark .manual-glass-stage .search input::placeholder { color: #f1f8f6; opacity: .9; }
