@@ -1453,3 +1453,18 @@ footer small {
     display:none;
   }
 }
+
+/* Independent entries reuse the original sections and keep their anchor URLs. */
+.entry-mode [hidden] { display: none !important; }
+.entry-mode #nav a { display: flex; align-items: center; gap: 10px; }
+.nav-entry-icon { width: 28px; height: 28px; object-fit: contain; flex: none; }
+.entry-mode main { position: relative; padding-top: 30px; }
+.entry-mode .entry.manual-card { background: var(--card); }
+.related-entries { display: none; }
+@media (min-width: 1400px) {
+  .entry-mode main { max-width: 1150px; padding-right: 220px; }
+  .related-entries { display: flex; position: absolute; top: 48px; right: 24px; width: 160px; flex-direction: column; gap: 10px; }
+  .related-entries h2 { font-size: 14px; margin: 0 0 5px; }
+  .related-entries a { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .related-entries a:hover { color: var(--accent); }
+}
