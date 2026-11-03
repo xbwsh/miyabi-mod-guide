@@ -640,65 +640,10 @@ main {
   height:28px;
   object-fit:contain;
 }
-.material-heading {
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-.upgrade-stage {
-  display:flex;
-  gap:32px;
-  align-items:center;
-  justify-content:center;
-  margin:24px 0 32px;
-}
 .weapon-upgrade {
   margin-top:28px;
   padding-top:24px;
   border-top:1px solid var(--line);
-}
-.upgrade-stage>img {
-  width:82px;
-  height:82px;
-  object-fit:contain;
-}
-.upgrade-requirements {
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  align-items:center;
-  font-size:14px;
-}
-.upgrade-direction {
-  font-size:22px;
-}
-.two-col {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:28px;
-}
-.two-col h3 {
-  margin-top:0;
-}
-.steps {
-  margin:24px 0;
-}
-.steps>div {
-  display:flex;
-  gap:18px;
-  margin:20px 0;
-}
-.steps>div>span {
-  font-size:13px;
-  color:var(--muted);
-  padding-top:3px;
-}
-.steps p {
-  margin:0;
-}
-.steps b {
-  display:block;
-  margin-bottom:3px;
 }
 .lunge {
   margin:26px 0;
@@ -1298,24 +1243,6 @@ footer small {
   .numbers span {
     font-size:12px;
   }
-  .two-col {
-    grid-template-columns:1fr;
-    gap:8px;
-  }
-  .upgrade-stage {
-    gap:18px;
-  }
-  .upgrade-stage>img {
-    width:65px;
-    height:65px;
-  }
-  .upgrade-requirements {
-    font-size:12px;
-  }
-  .upgrade-requirements .material-thumb {
-    width:24px;
-    height:24px;
-  }
   .item-icon {
     width:52px;
     height:52px;
@@ -1595,14 +1522,12 @@ body:has(.reading-layout) .entry.manual-card,
 .manual-card > *,
 .ability > div > *,
 .manual-card .weapon-upgrade > *,
-.manual-card .two-col > div > *,
 .manual-card .lunge > div > * {
   margin-block: 0;
 }
 .manual-card > * + *,
 .ability > div > * + *,
 .manual-card .weapon-upgrade > * + *,
-.manual-card .two-col > div > * + *,
 .manual-card .lunge > div > * + * {
   margin-block-start: var(--content-gap);
 }
@@ -1613,14 +1538,12 @@ body:has(.reading-layout) .entry.manual-card,
 .manual-card > .profile-list,
 .manual-card > .recipe,
 .manual-card > .lunge,
-.manual-card > .weapon-upgrade,
-.manual-card .weapon-upgrade > .steps {
+.manual-card > .weapon-upgrade {
   margin-block-start: var(--section-gap);
 }
 .manual-card > :first-child,
 .ability > div > :first-child,
 .manual-card .weapon-upgrade > :first-child,
-.manual-card .two-col > div > :first-child,
 .manual-card .lunge > div > :first-child { margin-block-start: 0; }
 .manual-card h3 + p,
 .manual-card h3 + ul,
@@ -1633,11 +1556,7 @@ body:has(.reading-layout) .entry.manual-card,
 .manual-card .lunge { padding-block: var(--content-gap); }
 .manual-card .recipe { padding-bottom: 0; }
 .manual-card .table-wrap,
-.manual-card .profile-list,
-.manual-card .upgrade-stage,
-.manual-card .steps { min-width: 0; }
-.manual-card .steps > div { margin: 0; }
-.manual-card .steps > div + div { margin-top: var(--content-gap); }
+.manual-card .profile-list { min-width: 0; }
 .manual-card .profile-list > div { padding-block: var(--content-gap); }
 .manual-card .profile-list > div:last-child { padding-bottom: 0; }
 .manual-row h3, .manual-row p { margin-block: 0; }
@@ -1821,4 +1740,57 @@ body:has(.reading-layout) .quickstart {
   .attribute-grid img { width: 40px; height: 40px; flex-basis: 40px; }
   .moon-tiers th, .moon-tiers td { padding: 10px 5px; }
   .moon-tiers th { font-size: 12px; }
+}
+
+/* Weapon care is a single, open section within the weapon entry. */
+.weapon-care-heading h3 { margin: 0; font-size: 20px; }
+.weapon-care-heading p { margin: 6px 0 0; color: var(--muted); }
+.manual-card .weapon-upgrade > .weapon-care-row { margin-block-start: 24px; }
+.weapon-care-row {
+  display: grid;
+  grid-template-columns: 5em minmax(0, 1fr);
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.weapon-care-row h4 { margin: 2px 0 0; font-size: 16px; line-height: 1.5; }
+.weapon-care-content { min-width: 0; }
+.weapon-care-content > * { margin-block: 0; }
+.weapon-care-content > * + * { margin-block-start: 14px; }
+.repair-exchange { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+.repair-exchange > span:first-child { display: inline-flex; align-items: center; gap: 8px; }
+.repair-exchange img, .weapon-materials img { width: 32px; height: 32px; object-fit: contain; }
+.care-arrow { color: var(--accent); font-size: 19px; line-height: 1; }
+.weapon-outcome { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; }
+.weapon-evolution { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.weapon-evolution figure { width: 56px; margin: 0; text-align: center; }
+.weapon-evolution img { display: block; width: 56px; height: 56px; object-fit: contain; }
+.weapon-evolution figcaption { color: var(--muted); font-size: 12px; line-height: 1.4; }
+.weapon-outcome-copy { flex: 1 1 190px; min-width: 0; }
+.weapon-outcome-copy > span, .weapon-outcome-copy small { color: var(--muted); font-size: 13px; }
+.weapon-outcome-copy p { margin: 3px 0; line-height: 1.65; }
+.weapon-care-content h5 { margin-block-start: 22px; font-size: 14px; line-height: 1.5; }
+.weapon-care-content h5 + * { margin-block-start: 8px; }
+.weapon-materials { padding: 0; list-style: none; }
+.weapon-materials li {
+  display: grid;
+  grid-template-columns: 3em 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.weapon-materials li:first-child { border-top: 1px solid var(--line); }
+.weapon-slot { color: var(--muted); font-size: 13px; }
+.weapon-materials strong { white-space: nowrap; }
+.weapon-steps { padding-left: 1.4em; }
+.weapon-steps li { margin: 8px 0; padding-left: 4px; }
+.weapon-steps li:first-child { margin-top: 0; }
+.weapon-steps li:last-child { margin-bottom: 0; }
+@media (max-width: 580px) {
+  .weapon-care-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .weapon-care-row h4 { margin-top: 0; }
+  .weapon-outcome { gap: 12px 20px; }
+  .weapon-materials li { gap: 8px; }
 }

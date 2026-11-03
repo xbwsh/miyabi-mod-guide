@@ -9,7 +9,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=modicon-1">
 <link rel="icon" type="image/png" sizes="256x256" href="assets/modicon.png?v=modicon-1">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=attributes-1">
+<link rel="stylesheet" href="style.css?v=weapon-care-1">
 </head>
 <body>
 <script>try{document.body.classList.toggle('dark',localStorage.getItem('miyabi-theme')==='dark')}catch{}</script>
@@ -237,46 +237,50 @@
 <small>科学机器 · 星见雅专属 · 冒险家物品分类</small>
 </div>
 <div id="upgrade" class="weapon-upgrade">
-<div class="upgrade-stage">
-<img src="assets/blade.png" alt="普通妖刀">
-<div class="upgrade-requirements">
-<span class="material-label">
-<img class="material-thumb" src="assets/anomaly-component.png" alt="特化型异常组件">组件 ×20</span>
-<span class="material-label">
-<img class="material-thumb" src="assets/engine-module.png" alt="音擎能源模块">能源 ×20</span>
-<span class="upgrade-direction" aria-hidden="true">→</span>
+<header class="weapon-care-heading">
+<h3>修复与升级</h3>
+<p>普通妖刀可用金块修复，也可消耗材料永久升级。</p>
+</header>
+<section class="weapon-care-row" aria-labelledby="blade-repair">
+<h4 id="blade-repair">金块修复</h4>
+<div class="weapon-care-content">
+<div class="repair-exchange">
+<span><img src="assets/material-gold-nugget.png" alt="" width="32" height="32" loading="lazy">金块 ×1</span>
+<span class="care-arrow" aria-hidden="true">→</span>
+<strong>恢复 50 点耐久</strong>
 </div>
-<img src="assets/blue-blade.png" alt="青蓝升级妖刀">
+<p>将金块给予妖刀即可修复，耐久上限为 200 点。耐久耗尽后妖刀会破损并自动卸下，修复后可重新装备。</p>
 </div>
-<div class="two-col">
-<div>
-<h3 id="blade-repair" class="material-heading">
-<img class="material-thumb" src="assets/material-gold-nugget.png" alt="金块">金块修复</h3>
-<p>给予 1 个金块恢复 <b>50 点耐久</b>，上限 200 点。耐久耗尽后妖刀破损并自动卸下，修复后可重新装备。</p>
+</section>
+<section class="weapon-care-row" aria-labelledby="blade-upgrade">
+<h4 id="blade-upgrade">永久升级</h4>
+<div class="weapon-care-content">
+<div class="weapon-outcome">
+<div class="weapon-evolution" aria-label="普通妖刀升级为青蓝妖刀">
+<figure><img src="assets/blade.png" alt="" width="56" height="56" loading="lazy"><figcaption>普通</figcaption></figure>
+<span class="care-arrow" aria-hidden="true">→</span>
+<figure><img src="assets/blue-blade.png" alt="" width="56" height="56" loading="lazy"><figcaption>升级后</figcaption></figure>
 </div>
-<div>
-<h3 id="blade-upgrade">双材料升级</h3>
-<p>消耗 <b>20 个特化型异常组件和 20 个音擎能源模块</b>，获得<b>无限耐久</b>和 <b>10 点基础位面伤害</b>。</p>
-</div>
-</div>
-<div id="blade-steps" class="steps">
-<div>
-<span>01</span>
-<p>
-<b>打开升级窗口</b>装备后右键武器格；破损或放在地上的妖刀也可右键升级。</p>
-</div>
-<div>
-<span>02</span>
-<p>
-<b>上组件，下能源</b>上格放特化型异常组件，下格放音擎能源模块，各至少 20 个。</p>
-</div>
-<div>
-<span>03</span>
-<p>
-<b>关闭窗口完成升级</b>材料齐全时消耗材料并升级，余料退回；材料不足时保留进度。升级也会修复破损妖刀。</p>
+<div class="weapon-outcome-copy">
+<span>升级后获得</span>
+<p><strong>无限耐久</strong> · <strong>10 点基础位面伤害</strong></p>
+<small>升级时也会修复破损的妖刀。</small>
 </div>
 </div>
-<p class="muted" id="blade-legacy">升级后保留闪电标记，右键武器格可卸下；对地右键仍施放飞雪。</p>
+<h5>升级材料</h5>
+<ul class="weapon-materials">
+<li><span class="weapon-slot">上格</span><img src="assets/anomaly-component.png" alt="" width="32" height="32" loading="lazy"><span>特化型异常组件</span><strong>×20</strong></li>
+<li><span class="weapon-slot">下格</span><img src="assets/engine-module.png" alt="" width="32" height="32" loading="lazy"><span>音擎能源模块</span><strong>×20</strong></li>
+</ul>
+<h5 id="blade-steps">升级步骤</h5>
+<ol class="weapon-steps">
+<li>装备后右键武器格，或右键地上的妖刀、物品栏中已破损的妖刀，打开升级窗口。</li>
+<li>按上、下格放入对应材料；材料可以分批放入。</li>
+<li>关闭窗口。两种材料各满 20 个时自动消耗并完成升级，余料退回；不足时保留已放入的材料。</li>
+</ol>
+<p class="muted" id="blade-legacy">升级后的物品栏图标带有闪电标记。右键武器格可卸下妖刀，对地右键仍施放飞雪。</p>
+</div>
+</section>
 </div>
 </section>
 <section id="pack" data-entry="equipment" class="entry manual-card">
