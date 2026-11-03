@@ -72,7 +72,7 @@ backdrop.setAttribute('aria-label', '关闭目录');
 backdrop.hidden = true;
 document.body.append(backdrop);
 
-function openMenu() {
+function openMenu(focusSearch = false) {
   if (matchMedia('(min-width: 851px)').matches) {
     searchInput.focus();
     return;
@@ -82,7 +82,7 @@ function openMenu() {
   backdrop.hidden = false;
   document.body.classList.add('nav-open');
   document.querySelector('.page').inert = true;
-  searchInput.focus();
+  (focusSearch ? searchInput : sidebar.querySelector('a, button')).focus();
 }
 
 function closeMenu(restoreFocus = false) {
@@ -109,7 +109,7 @@ document.addEventListener('keydown', event => {
   const tag = event.target.tagName;
   if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(tag) && !event.target.isContentEditable) {
     event.preventDefault();
-    openMenu();
+    openMenu(true);
   }
   if (event.key === 'Escape') closeMenu(true);
   if (event.key === 'Tab' && sidebar.classList.contains('open')) {
