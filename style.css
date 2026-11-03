@@ -1799,3 +1799,26 @@ body:has(.reading-layout) .quickstart {
   .skin-tabs button { flex-direction: column; text-align: center; gap: 4px; padding: 8px 4px; }
   .skin-tabs button[aria-selected=true] { padding: 7px 3px; }
 }
+
+/* Attribute icons are part of the guide's reference list, not a gallery. */
+.attribute-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 20px;
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+.attribute-grid li { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.attribute-grid img { width: 48px; height: 48px; flex: 0 0 48px; object-fit: contain; }
+.attribute-grid span { min-width: 0; line-height: 1.45; }
+.attribute-grid b, .attribute-grid small { display: block; }
+.attribute-grid small { color: var(--muted); font-size: 13px; }
+.table-wrap .moon-tiers { min-width: 0; table-layout: fixed; }
+@media (max-width: 580px) {
+  .attribute-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 10px; }
+  .attribute-grid li { gap: 8px; }
+  .attribute-grid img { width: 40px; height: 40px; flex-basis: 40px; }
+  .moon-tiers th, .moon-tiers td { padding: 10px 5px; }
+  .moon-tiers th { font-size: 12px; }
+}

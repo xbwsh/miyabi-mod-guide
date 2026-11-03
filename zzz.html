@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#183f49">
 <title>绝区零模组 · 模组使用手册</title>
 <link rel="icon" href="assets/zzz-modicon.png">
-<link rel="stylesheet" href="style.css?v=wide-layout-9">
+<link rel="stylesheet" href="style.css?v=attributes-1">
 </head>
 <body>
 <script>try{document.body.classList.toggle('dark',localStorage.getItem('miyabi-theme')==='dark')}catch{}</script>
@@ -39,12 +39,14 @@
 <button data-filter="materials">材料</button>
 <button data-filter="buildings">建筑</button>
 </div>
-<div class="nav-caption">本页目录 <span id="count">12</span>
+<div class="nav-caption">本页目录 <span id="count">14</span>
 </div>
 <nav id="nav">
 <a href="#core" data-tag="overview">模组介绍</a>
 <a href="#profile" data-tag="system">角色资料</a>
-<a href="#anomaly" data-tag="system">冰异常</a>
+<a href="#attributes" data-tag="system">属性与变种</a>
+<a href="#anomaly" data-tag="system">异常与紊乱</a>
+<a href="#damage-meter" data-tag="system">伤害统计</a>
 <a href="#drive" data-tag="system">驱动盘</a>
 <a href="#materials" data-tag="materials">升级材料</a>
 <a href="#yunkui" data-tag="system">以太电池与符箓</a>
@@ -122,9 +124,25 @@
 </dl>
 <p class="muted">返回按钮或 Esc 在装配界面先返回装备预览，再次返回关闭资料页。</p>
 </section>
+<section id="attributes" data-entry="system" class="entry">
+<h2>属性与变种</h2>
+<p>角色可以登记物理、火、风、冰、以太和电六种基础属性，以及三种变种属性。变种继承对应基础属性的伤害加成和抗性；角色实际能使用哪些属性取决于其技能与登记。</p>
+<ul class="attribute-grid" aria-label="属性列表">
+<li><img src="assets/attribute-physical.png" alt="" width="48" height="48" loading="lazy"><span><b>物理</b><small>基础属性</small></span></li>
+<li><img src="assets/attribute-fire.png" alt="" width="48" height="48" loading="lazy"><span><b>火</b><small>基础属性</small></span></li>
+<li><img src="assets/attribute-wind.png" alt="" width="48" height="48" loading="lazy"><span><b>风</b><small>基础属性</small></span></li>
+<li><img src="assets/attribute-ice.png" alt="" width="48" height="48" loading="lazy"><span><b>冰</b><small>基础属性</small></span></li>
+<li><img src="assets/attribute-ether.png" alt="" width="48" height="48" loading="lazy"><span><b>以太</b><small>基础属性</small></span></li>
+<li><img src="assets/attribute-electric.png" alt="" width="48" height="48" loading="lazy"><span><b>电</b><small>基础属性</small></span></li>
+<li><img src="assets/attribute-ink.png" alt="" width="48" height="48" loading="lazy"><span><b>玄墨</b><small>以太变种</small></span></li>
+<li><img src="assets/attribute-frost.png" alt="" width="48" height="48" loading="lazy"><span><b>烈霜</b><small>冰变种</small></span></li>
+<li><img src="assets/attribute-edge.png" alt="" width="48" height="48" loading="lazy"><span><b>凛刃</b><small>物理变种</small></span></li>
+</ul>
+<p>六种基础属性的驱动盘伤害加成都已生效。物理伤害遵守普通护甲规则；火、风、冰、以太和电伤害无视普通护甲和位面防御，但仍受相应抗性、位面实体抵抗及目标保护影响。独立位面伤害单独结算。</p>
+</section>
 <section id="anomaly" data-entry="system" class="entry">
-<h2>冰异常</h2>
-<p>冰与烈霜共用一根 <b>100 点异常条</b>，显示在目标头顶，条前使用冰霜元素图标。星见雅只有妖刀第 3～5 刀和飞雪的有效命中会积蓄，分别为 <b>10 × 异常掌控 ÷100</b> 与 <b>20 × 异常掌控 ÷100</b>。</p>
+<h2>异常与紊乱</h2>
+<p>已实现冰、烈霜、电、火、以太五种异常条，每条满 <b>100 点</b>触发对应状态；玄墨与以太共用一条，烈霜则与普通冰分别积蓄。异常进度显示在目标脚下。物理、凛刃与风目前没有异常积蓄。</p>
 <dl class="profile-list">
 <div>
 <dt>异常掌控</dt>
@@ -132,14 +150,33 @@
 </div>
 <div>
 <dt>异常精通</dt>
-<dd>提高满条伤害。星见雅基础为 238，4 号主词条与异常精通副词条均已生效。</dd>
+<dd>提高异常伤害。星见雅基础为 238，4 号主词条与异常精通副词条均已生效。</dd>
 </div>
 <div>
-<dt>满条结算</dt>
-<dd>按各次积蓄的攻击力、精通与适用增伤快照加权，基础为 500% 攻击力 × 精通 ÷100，结算普通伤害并尝试冻结；溢出的积蓄进入下一条。</dd>
+<dt>冰 / 烈霜</dt>
+<dd>满条尝试冻结目标并施加 10 秒霜寒，霜寒使受到的暴击伤害增加 10 个百分点。冻结结束时结算 <b>500% × 攻击力 × 精通 ÷100</b> 的对应属性碎冰伤害，并计入适用增伤。冻结后前 0.75 秒受到普通攻击不会碎冰；保护结束后可被攻击打破。无法冻结的目标会直接预约碎冰伤害，仍遵守目标保护。</dd>
+</div>
+<div>
+<dt>电 · 感电</dt>
+<dd>持续 10 秒，受到攻击或格挡时触发一次 <b>125%</b> 的感电伤害，每秒最多一次，最多 10 次；不会自行周期触发。</dd>
+</div>
+<div>
+<dt>火 · 灼烧</dt>
+<dd>持续 10 秒，每 0.5 秒造成一次 <b>50%</b> 的灼烧伤害，最多 20 次，无需额外攻击。</dd>
+</div>
+<div>
+<dt>以太 · 侵蚀</dt>
+<dd>以太与玄墨共用侵蚀状态；持续 10 秒，受到攻击或格挡时触发一次 <b>62.5%</b> 的侵蚀伤害，每 0.5 秒最多一次，最多 20 次。</dd>
 </div>
 </dl>
-<p class="muted">满条伤害不暴击、不含位面基数，不再次积蓄或触发暴击减冷却。免疫冻结不等于免疫异常伤害；实际冻结遵守目标免控限制。异常进度与待结算伤害随目标存档，旧冰/烈霜双条会合并。</p>
+<p>上述异常倍率以攻击力 × 精通 ÷100 及适用增伤为基础，按各次积蓄时的快照加权；溢出的积蓄进入下一条。不同异常状态覆盖时触发一次<b>紊乱</b>，伤害依据被覆盖状态的快照和剩余时间结算；同一异常刷新不触发。冰与烈霜虽继承同一种伤害属性，但相互覆盖仍可触发紊乱。</p>
+<p class="muted">异常伤害不暴击、不含独立位面伤害，不再次积蓄或触发暴击减冷却。冻结与霜寒状态各自计时。旧版共用冰条的进度仅保留为普通冰，不会复制为烈霜进度。</p>
+</section>
+<section id="damage-meter" data-entry="system" class="entry">
+<h2>伤害统计</h2>
+<p>角色信息按钮左侧显示本次连接的伤害占比，默认收起，按<b>普攻、技能、异常</b>以及有数据时的其他伤害分类。点击<b>“展开详情”</b>可查看各类伤害量、总占比及具体来源；星见雅的飞雪和霜月分别列出。</p>
+<p>统计依据目标<b>实际扣除的生命值</b>，计算护甲、抗性、免疫及过量伤害后的结果。点击“清零”或退出服务器后重新累计；每名玩家只查看自己的统计。</p>
+<p class="muted">两模组的调试日志均默认关闭，可在各自的模组配置中按需开启；修改后重新进入世界。开启后无自动时限和条数上限，退出世界或手动停止后结束。</p>
 </section>
 <section id="drive" data-entry="system" class="entry">
 <div class="item-heading">
@@ -270,10 +307,10 @@
 </tbody>
 </table>
 </div>
-<p class="muted">异常精通、穿透率、冰伤加成与异常掌控已生效。风、火、电、物理和以太伤害加成，以及冲击力、能量自动回复，目前仅保存与显示。</p>
-<h3>冰伤与穿透</h3>
-<p>冰伤主词条强化妖刀第 3～5 刀和飞雪的冰伤，S / A / B 分别为 30% / 20% / 10%。冰伤无视普通护甲与位面防御，但受位面实体抵抗影响；独立位面伤害不转为冰伤。</p>
-<p>穿透同时作用于<b>物理与冰伤</b>：增伤保底为穿透率的一半，与恢复位面实体抵抗减伤的收益取高，二者不相加。S / A / B 穿透率为 24% / 16% / 8%，无实体抵抗时对应保底增伤 12% / 8% / 4%。独立位面伤害不受穿透加成。</p>
+<p class="muted">异常精通、穿透率、六种属性伤害加成与异常掌控已生效；冲击力、能量自动回复目前仅保存与显示。</p>
+<h3>属性伤害与穿透</h3>
+<p>五号盘可强化对应属性伤害，S / A / B 分别为 30% / 20% / 10%。例如冰伤加成作用于妖刀第 3～5 刀、飞雪和烈霜异常；独立位面伤害不转为冰伤。</p>
+<p>穿透作用于<b>物理与元素伤害</b>：增伤保底为穿透率的一半，与恢复位面实体抵抗减伤的收益取高，二者不相加。S / A / B 穿透率为 24% / 16% / 8%，无实体抵抗时对应保底增伤 12% / 8% / 4%。独立位面伤害不受穿透加成。</p>
 <h3>副词条</h3>
 <p>每张盘有四条随机副词条，同盘不重复，普通词条数值随品级变化；同名主词条与副词条不会同时出现。词条生成后随物品保存，装卸和读档不会重抽。</p>
 <div class="table-wrap">
@@ -351,11 +388,9 @@
 </div>
 </details>
 <details class="guide-details" id="drive-interface">
-<summary>界面与装备动画<span aria-hidden="true">+</span>
+<summary>界面位置与操作<span aria-hidden="true">+</span>
 </summary>
 <div class="guide-details-content">
-<h3>背包装备动画</h3>
-<p>星见雅穿戴霰落星殿时，装配盘中央播放约 6 秒动画，每次开页播放一次，末帧停留；筛选不重播，卸装时隐藏。</p>
 <h3>界面位置</h3>
 <ul>
 <li>
@@ -778,7 +813,7 @@
 </div>
 <p>靠近信标后右键选择<b>“传送”</b>，从列表选择另一座信标，在源信标旁开启一道持续 <b>10 秒</b>的共享裂隙；点击裂隙跳入后传送，其他玩家也可使用。同一源信标同时只开启一道入口。也可在列表中为当前信标命名，最多 20 字；至少需要两座信标。</p>
 <p>开启裂隙前需下坐骑；两端信标周围须有安全落点。跳入沿用旺达裂隙的传送与理智消耗规则，所有角色到达时均平稳落地。信标仅连接同一世界层，不可跨地上和洞穴。</p>
-<p class="muted">裂隙沿用原版外观，并点缀少量蓝紫微粒。入口到时关闭；任一关联信标被拆除时也会关闭入口，已在传送途中的玩家仍能抵达。</p>
+<p class="muted">入口到时关闭；任一关联信标被拆除时也会关闭入口，已在传送途中的玩家仍能抵达。</p>
 <p>信标持续提供淡紫色照明，无需燃料。符合条件的附近跟随者会尝试一同传送。</p>
 <div class="recipe">
 <span>制作配方</span>
@@ -819,7 +854,7 @@
 </span>
 <a class="return-top" href="#core">↑ 返回顶部</a>
 </footer>
-<p class="muted">内容依据绝区零模组 <b>0.5.79</b> 源码核对，更新于 2026 年 11 月 1 日；游戏内效果仍待实机验证。</p>
+<p class="muted">内容依据绝区零模组 <b>0.5.113</b> 源码核对，更新于 2026 年 11 月 3 日；游戏内效果仍待实机验证。</p>
 <div class="rights-note">《绝区零》相关内容版权归米哈游所有，本项目为非官方同人模组。</div>
 </main>
 </div>
