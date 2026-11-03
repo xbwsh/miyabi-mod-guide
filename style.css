@@ -1794,3 +1794,157 @@ body:has(.reading-layout) .quickstart {
   .weapon-outcome { gap: 12px 20px; }
   .weapon-materials li { gap: 8px; }
 }
+
+/* Wiki-style reference surfaces, with the saved light/dark preference preserved. */
+:root {
+  --paper: #f4f5f1;
+  --card: #fffefa;
+  --surface: #e9eeea;
+  --side: #edf0eb;
+  --ink: #203739;
+  --muted: #566b69;
+  --line: #cddbd6;
+  --accent: #246d73;
+  --soft: #dcece7;
+}
+body.dark {
+  --paper: #151a1b;
+  --card: #202828;
+  --surface: #26302f;
+  --side: #111717;
+  --ink: #e4ece8;
+  --muted: #a7bab5;
+  --line: #3a4c49;
+  --accent: #90d0c9;
+  --soft: #2b4440;
+}
+.site-switch, .sidebar .search {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.sidebar .filters { background: transparent; border: 0; border-radius: 0; box-shadow: none; padding: 0; }
+.site-switch a, .filters button { box-shadow: none; }
+.site-switch a:hover, .filters button:hover { background: var(--soft); box-shadow: none; }
+.top-actions { gap: 8px; }
+.top-actions button { background: var(--surface); border: 1px solid var(--line); box-shadow: none; }
+.top-actions button:hover { background: var(--soft); }
+.top-actions .global-search-trigger {
+  display: flex;
+  width: auto;
+  height: 36px;
+  padding: 0 11px;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.global-search-trigger svg { width: 17px; height: 17px; flex: 0 0 17px; }
+.hero-links a, .section-nav a { background: var(--surface); box-shadow: none; }
+.community button, details > summary { box-shadow: none; }
+.hero-identity { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+.hero-identity img { width: 24px; height: 24px; object-fit: contain; }
+
+/* The homepage starts with setup, followed by compact, image-led entries. */
+.home-heading { padding: 44px 0 28px; }
+.home-section {
+  margin: 0;
+  padding: 32px 0 36px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+}
+.home-section-intro { margin: -6px 0 0; color: var(--muted); }
+.home-start li { margin: 10px 0; }
+.wiki-shortcuts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.wiki-shortcuts a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 96px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.wiki-shortcuts a:hover { background: var(--soft); border-color: var(--accent); }
+.wiki-shortcuts img { width: 48px; height: 48px; object-fit: contain; flex: 0 0 48px; }
+.wiki-shortcuts a > span { min-width: 0; }
+.wiki-shortcuts strong, .wiki-shortcuts small { display: block; }
+.wiki-shortcuts strong { font-size: 16px; line-height: 1.45; }
+.wiki-shortcuts small { margin-top: 4px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.manual-complete { display: inline-block; margin-top: 18px; font-size: 14px; }
+
+/* Section markers help scanning without changing existing reading anchors. */
+.home-section h2, .entry > h2, .item-heading h2, .stats > h2, .quickstart-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.home-section h2::before, .entry > h2::before, .item-heading h2::before,
+.stats > h2::before, .quickstart-heading h2::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 1em;
+  flex: 0 0 4px;
+  background: var(--accent);
+}
+
+/* Global search is a native modal; the sidebar search still filters this page. */
+.global-search-dialog {
+  width: min(640px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(78vh, 720px);
+  margin: max(32px, 8vh) auto auto;
+  padding: 24px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+body:has(.global-search-dialog[open]) { overflow: hidden; }
+.global-search-dialog::backdrop { background: #071514a8; }
+.global-search-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.global-search-heading h2 { margin: 0; font-size: 21px; }
+.global-search-heading p { margin: 3px 0 0; color: var(--muted); font-size: 14px; }
+.global-search-heading button { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); font-size: 24px; line-height: 1; }
+.global-search-heading button:hover { background: var(--soft); }
+.global-search-field { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding: 9px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; }
+.global-search-field:focus-within { border-color: var(--accent); outline: 1px solid var(--accent); }
+.global-search-field svg { width: 19px; height: 19px; flex: 0 0 19px; color: var(--muted); }
+.global-search-field input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 16px; }
+.global-search-field input::placeholder { color: var(--muted); }
+.global-search-status { margin: 14px 0 8px; color: var(--muted); font-size: 13px; }
+.global-search-results { margin: 0; padding: 0; list-style: none; }
+.global-search-results li { margin: 0; border-top: 1px solid var(--line); }
+.global-search-results a { display: block; padding: 12px 10px; border-radius: 4px; }
+.global-search-results a:hover { background: var(--soft); }
+.global-result-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.global-result-page { flex: 0 0 auto; color: var(--muted); font-size: 12px; }
+.global-search-results small { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+@media (max-width: 850px) {
+  .wiki-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 580px) {
+  .top-actions .global-search-trigger { width: 36px; justify-content: center; padding: 0; }
+  .global-search-trigger span { display: none; }
+  .home-heading { padding: 34px 0 24px; }
+  .home-section { padding: 28px 0 32px; }
+  .wiki-shortcuts { gap: 10px; }
+  .wiki-shortcuts a { flex-direction: column; align-items: flex-start; gap: 8px; min-height: 0; padding: 14px; }
+  .wiki-shortcuts img { width: 40px; height: 40px; flex-basis: 40px; }
+  .global-search-dialog { max-height: calc(100vh - 24px); margin: 12px auto auto; padding: 18px; }
+}
+@media (max-width: 360px) {
+  .repair-exchange { gap: 6px 8px; font-size: 14px; }
+  .repair-exchange img { width: 28px; height: 28px; }
+  .weapon-materials li { grid-template-columns: 2.4em 28px minmax(0, 1fr) auto; gap: 5px; font-size: 14px; }
+  .weapon-materials img { width: 28px; height: 28px; }
+}

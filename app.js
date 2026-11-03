@@ -247,6 +247,157 @@ $('#copy')?.addEventListener('click', async () => {
   }
 });
 
+// Build the cross-page index from the published handbooks, so their text remains
+// the single source for both reading and search.
+const globalDialog = $('#global-search-dialog');
+const globalTrigger = $('#global-search-open');
+const globalInput = $('#global-search-input');
+const globalStatus = $('#global-search-status');
+const globalResults = $('#global-search-results');
+if (globalDialog && globalTrigger && globalInput && globalStatus && globalResults) {
+  const globalSources = [
+    { path: 'miyabi.html', name: '星见雅' },
+    { path: 'zzz.html', name: '绝区零模组' }
+  ];
+  let globalIndexPromise;
+  let globalRequest = 0;
+  let searchReturnFocus;
+
+  function cleanSearchText(value) {
+    return value.replace(/\s+/g, ' ').trim();
+  }
+
+  function globalSearchIndex() {
+    if (!globalIndexPromise) {
+      globalIndexPromise = Promise.all(globalSources.map(async source => {
+        const response = await fetch(source.path);
+        if (!response.ok) throw new Error('Search index unavailable');
+        const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+        const entries = [];
+        doc.querySelectorAll('#nav a[href^="#"]').forEach(link => {
+          const hash = link.getAttribute('href');
+          const target = doc.getElementById(hash.slice(1));
+          if (!target) return;
+          const title = cleanSearchText(link.textContent);
+          let content = target.textContent;
+          if (hash === '#overview') content += ` ${doc.querySelector('.stats')?.textContent || ''}`;
+          entries.push({ page: source.name, href: source.path + hash, title, text: cleanSearchText(content) });
+          target.querySelectorAll('details[id]').forEach(details => {
+            const summary = details.querySelector('summary');
+            if (!summary) return;
+            const subtitle = cleanSearchText(summary.textContent).replace(/\s*\+\s*$/, '');
+            entries.push({ page: source.name, href: `${source.path}#${details.id}`,
+              title: `${title} · ${subtitle}`, text: cleanSearchText(details.textContent) });
+          });
+        });
+        return entries;
+      })).then(groups => groups.flat()).catch(error => {
+        globalIndexPromise = undefined;
+        throw error;
+      });
+    }
+    return globalIndexPromise;
+  }
+
+  function searchExcerpt(text, terms) {
+    const lower = text.toLowerCase();
+    const match = terms.map(term => lower.indexOf(term)).find(index => index >= 0) ?? 0;
+    const start = Math.max(0, match - 14);
+    const end = Math.min(text.length, Math.max(start + 76, match + terms[0].length + 28));
+    return `${start ? '…' : ''}${text.slice(start, end)}${end < text.length ? '…' : ''}`;
+  }
+
+  async function searchAll() {
+    const request = ++globalRequest;
+    const query = cleanSearchText(globalInput.value).toLowerCase();
+    globalResults.replaceChildren();
+    if (!query) {
+      globalStatus.textContent = '输入关键词开始搜索。';
+      return;
+    }
+    globalStatus.textContent = '正在查找资料…';
+    try {
+      const entries = await globalSearchIndex();
+      if (request !== globalRequest || !globalDialog.open) return;
+      const terms = query.split(/\s+/).filter(Boolean);
+      const matches = entries.map((entry, order) => {
+        const title = entry.title.toLowerCase();
+        const content = `${title} ${entry.text.toLowerCase()}`;
+        return { entry, order, matches: terms.every(term => content.includes(term)),
+          score: terms.reduce((score, term) => score + (title.includes(term) ? 1 : 0), 0) };
+      }).filter(result => result.matches).sort((a, b) => b.score - a.score || a.order - b.order);
+      globalStatus.textContent = matches.length
+        ? `找到 ${matches.length} 处相关内容${matches.length > 16 ? '，显示前 16 处' : ''}。`
+        : '没有找到相关内容，试试其他关键词。';
+      matches.slice(0, 16).forEach(({ entry }) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = entry.href;
+        link.setAttribute('aria-label', `${entry.title}，${entry.page}`);
+        const heading = document.createElement('span');
+        heading.className = 'global-result-heading';
+        const title = document.createElement('strong');
+        title.textContent = entry.title;
+        const page = document.createElement('span');
+        page.className = 'global-result-page';
+        page.textContent = entry.page;
+        const excerpt = document.createElement('small');
+        excerpt.textContent = searchExcerpt(entry.text, terms);
+        heading.append(title, page);
+        link.append(heading, excerpt);
+        item.append(link);
+        globalResults.append(item);
+      });
+    } catch {
+      if (request === globalRequest && globalDialog.open) {
+        globalStatus.textContent = '资料暂时无法加载，请稍后重试或使用左侧本页搜索。';
+      }
+    }
+  }
+
+  function openGlobalSearch() {
+    if (globalDialog.open) return;
+    searchReturnFocus = sidebar.classList.contains('open') ? menu : document.activeElement;
+    closeMenu();
+    globalInput.value = '';
+    globalResults.replaceChildren();
+    globalStatus.textContent = '输入关键词开始搜索。';
+    globalDialog.showModal();
+    globalInput.focus();
+  }
+  globalTrigger.addEventListener('click', openGlobalSearch);
+  globalInput.addEventListener('input', searchAll);
+  globalInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      const first = globalResults.querySelector('a');
+      if (first) { event.preventDefault(); first.click(); }
+    }
+  });
+  globalResults.addEventListener('click', event => {
+    if (event.target.closest('a')) globalDialog.close();
+  });
+  globalDialog.addEventListener('click', event => {
+    if (event.target === globalDialog) globalDialog.close();
+  });
+  globalDialog.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      event.stopPropagation();
+      globalDialog.close();
+    }
+  });
+  globalDialog.addEventListener('close', () => {
+    globalRequest++;
+    if (searchReturnFocus?.isConnected) searchReturnFocus.focus({ preventScroll: true });
+  });
+  document.addEventListener('keydown', event => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openGlobalSearch();
+    }
+  });
+}
+
 search();
 
 // Native tab keys keep the wardrobe usable without a pointer.

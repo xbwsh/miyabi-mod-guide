@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#f8f7f3">
 <title>模组使用手册 · 绝区零与星见雅</title>
 <link rel="icon" href="assets/zzz-modicon.png">
-<link rel="stylesheet" href="style.css?v=wide-layout-9">
+<link rel="stylesheet" href="style.css?v=wiki-1">
 <script src="legacy-links.js?v=5">
 </script>
 </head>
@@ -35,7 +35,7 @@
 <input id="search" placeholder="搜索手册入口" aria-label="搜索手册入口">
 <kbd>/</kbd>
 </label>
-<div class="filters">
+<div class="filters" aria-label="分类筛选">
 <button class="selected" data-filter="all">全部</button>
 <button data-filter="character">角色</button>
 <button data-filter="system">公共系统</button>
@@ -43,8 +43,8 @@
 <div class="nav-caption">本页目录 <span id="count">3</span>
 </div>
 <nav id="nav">
-<a href="#start" data-tag="system">使用须知</a>
-<a href="#manuals" data-tag="character">模组手册</a>
+<a href="#start" data-tag="system">开始使用</a>
+<a href="#manuals" data-tag="character">资料入口</a>
 <a href="#help" data-tag="character">问题反馈</a>
 </nav>
 <p id="empty" hidden>未找到入口，可进入角色或绝区零模组手册搜索。</p>
@@ -60,6 +60,10 @@
 </button>
 <div>使用手册</div>
 <div class="top-actions">
+<button class="global-search-trigger" id="global-search-open" type="button" aria-label="搜索全部资料" aria-haspopup="dialog" aria-controls="global-search-dialog">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+<span>搜索全部资料</span>
+</button>
 <button id="theme" aria-label="切换深浅主题" aria-pressed="false">
 <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6">
 <circle cx="12" cy="12" r="8"/>
@@ -74,32 +78,25 @@
 <p>绝区零模组与星见雅角色模组的启用、装备和玩法说明。</p>
 </header>
 <section class="home-section" id="start">
-<h2>使用须知</h2>
-<ul class="home-start">
-<li><b>绝区零模组</b>可以单独启用。</li>
-<li><b>星见雅角色模组</b>必须安装并启用前置模组<b>绝区零模组</b>；服务端和客户端均需启用。</li>
-</ul>
+<h2>开始使用</h2>
+<ol class="home-start">
+<li>安装并启用<b>绝区零模组</b>；它也可以单独使用。</li>
+<li>使用星见雅时，同时启用<b>星见雅角色模组</b>。服务端和所有客户端都需要启用两个模组。</li>
+<li>选择星见雅进入世界；可在模组配置中调整霜月快捷键。</li>
+</ol>
 </section>
 <section class="home-section" id="manuals">
-<h2>模组手册</h2>
-<div class="manual-list">
-<a class="manual-row" href="miyabi.html">
-<img src="assets/default.png" alt="" width="52" height="64">
-<div>
-<h3>星见雅</h3>
-<p>角色能力、妖刀与装备升级、小无尾、衣装。</p>
-</div>
-<span class="row-link">查看手册 →</span>
-</a>
-<a class="manual-row" href="zzz.html">
-<img src="assets/zzz-modicon.png" alt="" width="52" height="64">
-<div>
-<h3>绝区零模组</h3>
-<p>角色资料、异常、驱动盘、建筑、鲨牙布与符箓。</p>
-</div>
-<span class="row-link">查看手册 →</span>
-</a>
-</div>
+<h2>资料入口</h2>
+<p class="home-section-intro">选择一项查看对应资料，也可以搜索两个模组的内容。</p>
+<nav class="wiki-shortcuts" aria-label="资料快捷入口">
+<a href="miyabi.html#overview"><img src="assets/modicon.png" alt="" width="48" height="48"><span><strong>星见雅</strong><small>基础属性 · 战斗天赋</small></span></a>
+<a href="miyabi.html#wuwei"><img src="assets/blade.png" alt="" width="48" height="48"><span><strong>妖刀与装备</strong><small>修复升级 · 专属装备</small></span></a>
+<a href="zzz.html#drive"><img src="assets/drive-disc.png" alt="" width="48" height="48"><span><strong>驱动盘</strong><small>套装效果 · 词条与装配</small></span></a>
+<a href="zzz.html#attributes"><img src="assets/attribute-frost.png" alt="" width="48" height="48"><span><strong>属性与异常</strong><small>属性变种 · 异常结算</small></span></a>
+<a href="zzz.html#record-shop"><img src="assets/crate.png" alt="" width="48" height="48"><span><strong>建筑与道具</strong><small>音像店 · 空洞木箱 · 信标</small></span></a>
+<a href="zzz.html#sharkboo"><img src="assets/sharkboo.png" alt="" width="48" height="48"><span><strong>邦布</strong><small>鲨牙布 · 工作与战斗</small></span></a>
+</nav>
+<a class="text-link manual-complete" href="zzz.html">查看绝区零模组完整手册 →</a>
 </section>
 <section class="home-section" id="help">
 <h2>问题反馈</h2>
@@ -115,9 +112,15 @@
 <div class="rights-note">《绝区零》相关内容版权归米哈游所有。</div>
 </main>
 </div>
+<dialog id="global-search-dialog" class="global-search-dialog" aria-labelledby="global-search-title">
+<div class="global-search-heading"><div><h2 id="global-search-title">搜索资料</h2><p>查找星见雅与绝区零模组的内容</p></div><form method="dialog"><button type="submit" aria-label="关闭搜索">×</button></form></div>
+<label class="global-search-field" for="global-search-input"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="global-search-input" type="search" aria-label="搜索全部资料" placeholder="例如：霜月、驱动盘、升级材料" autocomplete="off"></label>
+<p id="global-search-status" class="global-search-status" role="status">输入关键词开始搜索。</p>
+<ul id="global-search-results" class="global-search-results"></ul>
+</dialog>
 <div id="toast" role="status" aria-live="polite">
 </div>
-<script src="app.js?v=manual-1">
+<script src="app.js?v=wiki-1">
 </script>
 </body>
 </html>

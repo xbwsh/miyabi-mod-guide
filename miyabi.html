@@ -9,7 +9,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=modicon-1">
 <link rel="icon" type="image/png" sizes="256x256" href="assets/modicon.png?v=modicon-1">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=weapon-care-1">
+<link rel="stylesheet" href="style.css?v=wiki-1">
 </head>
 <body>
 <script>try{document.body.classList.toggle('dark',localStorage.getItem('miyabi-theme')==='dark')}catch{}</script>
@@ -74,6 +74,10 @@
 <strong>星见雅</strong>
 </div>
 <div class="top-actions">
+<button class="global-search-trigger" id="global-search-open" type="button" aria-label="搜索全部资料" aria-haspopup="dialog" aria-controls="global-search-dialog">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+<span>搜索全部资料</span>
+</button>
 <button id="theme" aria-label="切换深浅主题" aria-pressed="false">
 <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6">
 <circle cx="12" cy="12" r="8"/>
@@ -86,6 +90,8 @@
 <section class="hero" id="overview" data-entry="character">
 <div class="hero-copy">
 <h1>星见雅</h1>
+<p class="lead">近战冰冻角色，出生携带妖刀与 8 格背包；使用时需要启用绝区零模组。</p>
+<p class="hero-identity"><img src="assets/attribute-frost.png" alt="" width="24" height="24">烈霜属性 · 异常专长 · 对空六课</p>
 </div>
 <div class="hero-art">
 <img src="assets/portrait.png" alt="星见雅角色立绘" fetchpriority="high">
@@ -596,9 +602,15 @@
 <div class="rights-note">《绝区零》相关内容版权归米哈游所有，本项目为非官方同人模组。作者拥有权利的代码可自由使用、修改与分发，无需额外许可或强制署名；原作素材及第三方内容仍遵循各自许可。</div>
 </main>
 </div>
+<dialog id="global-search-dialog" class="global-search-dialog" aria-labelledby="global-search-title">
+<div class="global-search-heading"><div><h2 id="global-search-title">搜索资料</h2><p>查找星见雅与绝区零模组的内容</p></div><form method="dialog"><button type="submit" aria-label="关闭搜索">×</button></form></div>
+<label class="global-search-field" for="global-search-input"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="global-search-input" type="search" aria-label="搜索全部资料" placeholder="例如：霜月、驱动盘、升级材料" autocomplete="off"></label>
+<p id="global-search-status" class="global-search-status" role="status">输入关键词开始搜索。</p>
+<ul id="global-search-results" class="global-search-results"></ul>
+</dialog>
 <div id="toast" role="status" aria-live="polite">
 </div>
-<script src="app.js?v=cards-2">
+<script src="app.js?v=wiki-1">
 </script>
 </body>
 </html>

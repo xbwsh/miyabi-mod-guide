@@ -16,7 +16,7 @@
 - `miyabi.html`：角色能力、装备、衣装和配置。
 - `zzz.html`：角色资料、驱动盘、公共材料、建筑与邦布。
 - `style.css`：布局、移动端和主题。
-- `app.js`：搜索、衣装切换、主题选择与群号复制。
+- `app.js`：本页目录筛选、跨手册搜索、衣装切换、主题选择与群号复制。全站搜索读取本地手册页面建立索引，无需外部搜索服务。
 - `assets/`：随网站保存的图片。
 - `legacy-links.js`：将旧首页书签跳转到对应手册。
 - `tools/check-site.py`：检查 HTML 结构、唯一 ID、站内链接与资源引用。
@@ -26,7 +26,7 @@
 
 ## 本地检查
 
-运行 `python tools/check-site.py` 与 `node --check app.js`。运行 `python -m http.server 8766 --bind 127.0.0.1` 后，在浏览器查看首页与两个手册，检查搜索、旧书签、折叠内容、衣装切换及手机目录。
+运行 `python tools/check-site.py` 与 `node --check app.js`。运行 `python -m http.server 8766 --bind 127.0.0.1` 后，在浏览器查看首页与两个手册，检查本页与跨手册搜索、旧书签、折叠内容、衣装切换、深浅主题及手机目录。
 
 ## 内容说明
 
