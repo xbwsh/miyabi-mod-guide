@@ -27,7 +27,7 @@ function writeSnippet(link, target, query) {
 }
 
 function search() {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = (searchInput?.value || '').trim().toLowerCase();
   let count = 0;
 
   nav.forEach(link => {
@@ -43,8 +43,8 @@ function search() {
   $('#empty').hidden = count > 0;
 }
 
-searchInput.addEventListener('input', search);
-searchInput.addEventListener('keydown', event => {
+searchInput?.addEventListener('input', search);
+searchInput?.addEventListener('keydown', event => {
   if (event.key !== 'Enter') return;
   const firstMatch = nav.find(link => !link.hidden);
   if (!firstMatch) return;
@@ -74,7 +74,8 @@ document.body.append(backdrop);
 
 function openMenu(focusSearch = false) {
   if (matchMedia('(min-width: 851px)').matches) {
-    searchInput.focus();
+    if (searchInput) searchInput.focus();
+    else $('#global-search-open')?.click();
     return;
   }
   sidebar.classList.add('open');
@@ -82,7 +83,7 @@ function openMenu(focusSearch = false) {
   backdrop.hidden = false;
   document.body.classList.add('nav-open');
   document.querySelector('.page').inert = true;
-  (focusSearch ? searchInput : sidebar.querySelector('a, button')).focus();
+  (focusSearch && searchInput ? searchInput : sidebar.querySelector('a, button')).focus();
 }
 
 function closeMenu(restoreFocus = false) {
@@ -109,7 +110,8 @@ document.addEventListener('keydown', event => {
   const tag = event.target.tagName;
   if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(tag) && !event.target.isContentEditable) {
     event.preventDefault();
-    openMenu(true);
+    if (searchInput) openMenu(true);
+    else $('#global-search-open')?.click();
   }
   if (event.key === 'Escape') closeMenu(true);
   if (event.key === 'Tab' && sidebar.classList.contains('open')) {
@@ -127,7 +129,7 @@ document.addEventListener('keydown', event => {
 });
 
 nav.forEach(link => link.addEventListener('click', () => {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = (searchInput?.value || '').trim().toLowerCase();
   if (query) {
     const target = document.querySelector(link.hash);
     target.querySelectorAll('details').forEach(details => {

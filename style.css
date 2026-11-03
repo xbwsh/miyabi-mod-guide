@@ -1843,7 +1843,8 @@ body.dark {
 .global-search-trigger svg { width: 17px; height: 17px; flex: 0 0 17px; }
 .hero-links a, .section-nav a { background: var(--surface); box-shadow: none; }
 .community button, details > summary { box-shadow: none; }
-.hero-identity { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+.hero-identity { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+.hero-identity span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 .hero-identity img { width: 24px; height: 24px; object-fit: contain; }
 
 /* The homepage starts with setup, followed by compact, image-led entries. */
