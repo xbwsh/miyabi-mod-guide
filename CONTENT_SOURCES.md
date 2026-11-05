@@ -1,6 +1,6 @@
 # 内容核对入口
 
-本轮核对：2026-11-03，星见雅 `0.4.101-debug-section`，公共模组 `0.5.113-debug-section`。这里只记录源码依据，不代表游戏实机验收。网站保留手册式卡片、妖刀升级内嵌与旧锚点，不展示或介绍特效贴图。
+本轮核对：2026-11-05，星见雅 `0.4.120-exclusive-equipment`，公共模组 `0.5.129-phaethon-reference`。这里只记录源码依据，不代表游戏实机验收。网站保留手册式卡片、妖刀升级内嵌与旧锚点，不展示或介绍特效贴图。
 
 源目录为网站仓库同级上两层的 `DST-MiYaBi/` 与 `DST-ZZZ/`。先读两边的 `modinfo.lua`；更新正文后再修改页面对应版本。
 
@@ -27,7 +27,7 @@
 | 按实际扣血的伤害统计 | `DST-ZZZ/scripts/zzz_damage_meter.lua`、`zzz_damage_meter_ui.lua` |
 | 两模组调试模式与默认值 | 两边 `modinfo.lua`、`DST-ZZZ/scripts/zzz_debug_runtime.lua` |
 | 面板穿透与异常数值 | `DST-ZZZ/scripts/zzz_character_stats.lua` |
-| 首领 S/A/B 20/30/50、参与窗口 | `DST-ZZZ/scripts/zzz_drive_loot.lua` |
+| 首领第70天解锁S、A/B 37.5/62.5、S/A/B 20/30/50与参与窗口 | `DST-ZZZ/scripts/zzz_drive_loot.lua` |
 | 物品分类 | `DST-ZZZ/scripts/zzz/crafting_filters.lua` |
 | 木箱样本收集与无限堆叠 | `DST-ZZZ/scripts/zzz_crate_collect.lua`、`zzz_crate_upgrade.lua`、`prefabs/zzz_crate.lua` |
 | 符箓、洞穴天气、能源配方 | `DST-ZZZ/scripts/zzz/yunkui.lua` |
@@ -37,3 +37,13 @@
 四个符箓/能源图标复用 `zzz_production/yunkui_v54/qa/zzz_*-icon.png`，未生成新图或修改运行资源。
 
 九种属性图标复用 `zzz_production/attribute_icons_v342/icons/` 中的透明原图，缩小导出为网页图片；不修改模组运行资源。
+
+本轮新增核对入口：
+
+| 内容 | 源码入口 |
+| --- | --- |
+| 飞雪角色校验与帽围巾专属穿戴 | `DST-MiYaBi/scripts/miyabi_wuwei_combat.lua`、`scripts/prefabs/miyabi_dawn_hat.lua`、`scripts/prefabs/miyabi_dawn_scarf.lua` |
+| 属性特性自选、保存与变身 | `DST-ZZZ/scripts/zzz_identity_selection.lua`、`components/zzz_identity.lua`、`zzz_identity_screen.lua`、`zzz_specialties.lua` |
+| 阵营目录与默认身份 | `DST-ZZZ/scripts/zzz_factions.lua`、`zzz_profile_identity.lua` |
+| 生物物种与阵营抗性 | `DST-ZZZ/scripts/zzz_creature_resistance.lua` |
+| 发梢、衣装与围巾修正记录 | `DST-MiYaBi/README.md` v381–v399 与对应制作检查记录；网页未新增未经实机确认的效果图 |
